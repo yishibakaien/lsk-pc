@@ -1,0 +1,16 @@
+[{
+  "path": "/home",
+  "name": "首页"
+}, {
+  "path": "/suppiesInfo",
+  name: "供求信息"
+}, {
+  "path": "/ProductGallery",
+  "name": "花型展厅"
+}, {
+  "path": "/threeDDress",
+  "name": "3D试衣"
+}, {
+  "path": "/processDesign",
+  "name": "工艺设计"
+}]

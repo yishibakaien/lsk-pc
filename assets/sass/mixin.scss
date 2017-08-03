@@ -1,0 +1,19 @@
+// 列表
+@mixin menu-item {
+  box-sizing: border-box;
+  cursor: pointer;
+  height: $item--height;
+  line-height: $item--height;
+  font-size: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  border-bottom: 1px solid #eaeaea;
+}
+// 居中
+@mixin center($margin:0) {
+  display: table;
+  margin: $margin auto;
+}
