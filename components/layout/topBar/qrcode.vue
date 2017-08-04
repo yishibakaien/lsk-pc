@@ -48,7 +48,7 @@ export default {}
       font-size:$font-size--sub;
     }
     @m tip{
-      color: $danger;
+      color: $color-danger;
     }
   }
 }

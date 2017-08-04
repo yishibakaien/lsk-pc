@@ -8,7 +8,7 @@
   }, {
     "name": "地址管理",
     "path": "address"
-  }, {}],
+  }],
   "order": [{
     "name": "大货订单",
     "path": "orderBulk"

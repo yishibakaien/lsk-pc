@@ -1,5 +1,7 @@
 <template lang="html">
-  <img />
+  <section>
+myPurchase.vue.vue
+  </section>
 </template>
 
 <script>

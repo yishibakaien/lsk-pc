@@ -76,7 +76,7 @@ module.exports = {
     /*
     ** Extend Nuxt Webpack config
     */
-    extend(config) {
+    extend (config) {
       config.module.rules.forEach((rule) => {
         if (isVueRule(rule)) {
           rule.query.loaders.sass.push(sassResourcesLoader)
@@ -88,23 +88,23 @@ module.exports = {
       })
     },
     postcss: [require('postcss-salad')({
-        'browsers': [
-          'ie > 8', 'last 20 versions'
-        ],
-        'features': {
-          'bem': {
-            'shortcuts': {
-              'component': 'b',
-              'modifier': 'm',
-              'descendent': 'e'
-            },
-            'separators': {
-              'descendent': '__',
-              'modifier': '--'
-            }
+      'browsers': [
+        'ie > 8', 'last 20 versions'
+      ],
+      'features': {
+        'bem': {
+          'shortcuts': {
+            'component': 'b',
+            'modifier': 'm',
+            'descendent': 'e'
+          },
+          'separators': {
+            'descendent': '__',
+            'modifier': '--'
           }
         }
-      })],
+      }
+    })],
     loaders: [
       {
         test: /\.(png|jpe?g|gif|svg)$/,
@@ -123,5 +123,5 @@ module.exports = {
       }
     ]
   },
-  plugins: ['~plugins/element-ui']
+  plugins: ['~plugins/element-ui', '~plugins/components/index', '~plugins/axios-default']
 }
