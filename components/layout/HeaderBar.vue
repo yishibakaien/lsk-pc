@@ -1,10 +1,10 @@
 <template lang="html">
   <el-row class="headerBar">
     <el-col :span="6">
-      <div class="headerBar__logo"></div>
+      <router-link to="/" class="headerBar__logo" tag="a"></router-link>
     </el-col>
     <el-col :span="12" class="headerBar__search">
-      <el-input></el-input>
+      <search></search>
     </el-col>
     <el-col :span="6">
       <shop-car></shop-car>
@@ -13,10 +13,12 @@
 </template>
 
 <script>
-import ShopCar from './topBar/shopCar.vue';
+import ShopCar from './headerBar/ShopCar';
+import Search from './headerBar/Search';
 export default {
   components:{
-    ShopCar
+    ShopCar,
+    Search
   }
 }
 </script>

@@ -1,16 +1,16 @@
 [{
-  "path": "/home",
+  "path": "/",
   "name": "首页"
 }, {
-  "path": "/suppiesInfo",
-  name: "供求信息"
+  "path": "/home/suppiesInfo",
+  "name": "供求信息"
 }, {
-  "path": "/ProductGallery",
+  "path": "/home/productGallery",
   "name": "花型展厅"
 }, {
-  "path": "/threeDDress",
+  "path": "/home/threeDDress",
   "name": "3D试衣"
 }, {
-  "path": "/processDesign",
+  "path": "/home/processDesign",
   "name": "工艺设计"
 }]

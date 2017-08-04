@@ -17,7 +17,9 @@
   <!-- TOPBAR -->
   <!-- ====== -->
   <el-row class="header__wrapper--row">
-    <el-col :span="2">蕾丝控首页</el-col>
+    <el-col :span="2">
+      <router-link to="/" tag="a">蕾丝控首页</router-link>
+    </el-col>
     <el-col :span="12">
       <login-status></login-status>
     </el-col>
@@ -35,7 +37,7 @@
 <script>
 import PersonalMenuData from '@/utils/consts/personal-menu.json'
 import QrcodeItem from './topBar/qrcode';
-import LoginStatus from './topBar/loginStatus';
+import LoginStatus from './topBar/loginStatus'
 export default {
   data() {
     return {

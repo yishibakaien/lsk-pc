@@ -1,6 +1,6 @@
 <template lang="html">
   <nav>
-    <router-link tag="a" :to="item.path" v-for="item in navs">{{item.name}}</router-link>
+    <router-link tag="a" :to="item.path" v-for="item in navs" :key="item.path">{{item.name}}</router-link>
   </nav>
 </template>
 
@@ -10,6 +10,11 @@ export default {
   data() {
     return {
       navs: navs
+    }
+  },
+  methods:{
+    nav(path){
+      return `/${this.navs[0].path}/${path}`
     }
   }
 };

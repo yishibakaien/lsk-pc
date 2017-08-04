@@ -1,15 +1,18 @@
 <template lang="html">
   <section>
     <header-bar></header-bar>
-      <router-view></router-view>
+    <nav-item></nav-item>
+    <router-view></router-view>
   </section>
 </template>
 
 <script>
-import HeaderBar from '@/components/Pages/HeaderBar'
+import NavItem from '@/components/layout/Nav'
+import HeaderBar from '@/components/layout/HeaderBar'
 export default {
-  components:{
-    HeaderBar
+  components: {
+    HeaderBar,
+    NavItem
   }
 }
 </script>

@@ -6,8 +6,8 @@
 </div>
 </template>
 <script>
-  import TopBar from '@/components/Pages/TopBar'
-  import FooterBar from '@/components/Pages/FooterBar'
+  import TopBar from '@/components/layout/TopBar'
+  import FooterBar from '@/components/layout/FooterBar'
   export default {
     components: {
       TopBar,
