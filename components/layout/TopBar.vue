@@ -56,7 +56,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 @b header {
      @e wrapper{
         background: #f2f2f2;
