@@ -3,7 +3,7 @@
 // **********
 $color-primary:#D40073;
 $color-secondary:rgba(212,0,115,0.10);
-$color-danger:#D40073;
+$color-danger:#ff4949;
 $color-warning:#FF8400;
 $color-white:#fff;
 $color-black:#333333;
@@ -22,11 +22,11 @@ $color-grey-10:#3F3F3F;
 // 字 体 大 小
 // **********
 $font-size-base: 14px;
-$font-size--content: $font-size-base;
-$font-size--sub: ($font-size-base - 1px);
-$font-size--tip: ($font-size-base - 2px);
-$font-size--title: ($font-size-base + 2px);
-$font-size--bigTitle: ($font-size-base + 4px);
+$font-size--content: $font-size-base; //14px
+$font-size--sub-content: ($font-size-base - 1px); //13px
+$font-size--tip: ($font-size-base - 2px); //12px
+$font-size--sub-title: ($font-size-base + 2px); //16px
+$font-size--title: ($font-size-base + 6px); //20px
 // **********
 //   高  度
 // **********
@@ -34,7 +34,8 @@ $item--height: 40px;
 // ***********
 //  图 片 高 度
 // ***********
-$pic-height-1:40px;
+$pic-height-base:40px;
+$pic-height-1:$pic-height-base; // 40px
 $pic-height-2:calc($pic-height-1 + 20px); // 60px
 $pic-height-3:calc($pic-height-1 + 40px); // 80px
 $pic-height-4:calc($pic-height-1 + 50px); // 90px
