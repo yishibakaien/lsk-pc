@@ -19,7 +19,10 @@ export default {
 @b header {
      @e menu{
         a {
-            padding: 0 4px;
+            padding: 0 10px;
+            &:last-child{
+              border-left: 1px solid
+            }
         }
     }
 }
