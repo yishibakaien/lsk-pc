@@ -1,4 +1,6 @@
-// COOKIE
+// ============
+// ***COOKIE***
+// ============
 export const cookie = (() => {
   return {
     // 设置cookie
@@ -40,3 +42,29 @@ export const cookie = (() => {
     }
   }
 })()
+// ===========
+// **数组归类**
+// ===========
+export const classifyArr = ($arr, $typeKey) => {
+  let result = []
+  result = $arr.reduce((prev, item) => {
+    prev[item[$typeKey]]
+      ? prev[item[$typeKey]].push(item)
+      : prev[item[$typeKey]] = [item]
+    return prev
+  }, {})
+  return result
+}
+// ===========
+// **数组归类**
+// ===========
+export const getNameByRoute = (map, route) => {
+  let name = ''
+  Object.keys(map).some(path => {
+    if (map[path].route === route) {
+      name = map[path]
+      return true
+    }
+  })
+  return name
+}

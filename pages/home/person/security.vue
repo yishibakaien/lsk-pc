@@ -21,18 +21,14 @@
     <!-- 1.修改密码 -->
     <el-dialog title="修改密码" :visible.sync="Dialog.editPwd" size="tiny" :before-close="handleCloseEditPwd">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="活动名称" prop="name">
-          <el-input v-model="ruleForm.name"></el-input>
+        <el-form-item label="愿密码" prop="originPwd">
+          <el-input v-model="ruleForm.originPwd"></el-input>
         </el-form-item>
-      </el-form>
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="活动名称" prop="name">
-          <el-input v-model="ruleForm.name"></el-input>
+        <el-form-item label="新密码" prop="password">
+          <el-input v-model="ruleForm.password"></el-input>
         </el-form-item>
-      </el-form>
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="活动名称" prop="name">
-          <el-input v-model="ruleForm.name"></el-input>
+        <el-form-item label="确认密码" prop="confirmPwd">
+          <el-input v-model="ruleForm.confirmPwd"></el-input>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -46,7 +42,13 @@ export default {
       Dialog: {
         editPwd: false,
         editPhone: false
-      }
+      },
+      ruleForm: {
+        confirmPwd: '',
+        password: '',
+        originPwd: ''
+      },
+      rules: {}
     }
   }
 }

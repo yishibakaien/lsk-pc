@@ -1,6 +1,7 @@
 <template lang="html">
-  <nav>
-    <router-link tag="a" :to="item.path" v-for="item in navs" :key="item.path">{{item.name}}</router-link>
+  <nav class="nav">
+    <router-link tag="a" :to="item.path" v-for="item in navItem" :key="item.path">{{item.name}}</router-link>
+    <slot></slot>
   </nav>
 </template>
 
@@ -12,13 +13,19 @@ export default {
       navs: navs
     }
   },
-  methods:{
-    nav(path){
-      return `/${this.navs[0].path}/${path}`
+  props: {
+    navItem: {
+      type: Array,
+      default: function() {
+        return navs;
+      }
     }
   }
 };
 </script>
 
-<style lang="css">
+<style lang="scss" scoped>
+@b nav{
+  border-bottom: 2px solid blue;
+}
 </style>

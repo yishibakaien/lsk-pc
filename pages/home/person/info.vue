@@ -1,47 +1,77 @@
 <template lang="html">
-  <section class="info">
-    <el-form :model="registerForm" :rules="rules" refs="registerForm">
-      <el-form-item label="手机号码" prop="phone">
-        <el-input v-model="ruleForm.phone" placeholder="请输入您的手机号码"></el-input>
-      </el-form-item>
-      <el-form-item label="验证码" prop="phone">
-        <el-input v-model="ruleForm.phone" :disabled="true"></el-input>
-        <el-button>获取短信验证码</el-button>
-      </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="ruleForm.password" placeholder="请输入您的登录密码"></el-input>
-      </el-form-item>
-      <el-form-item label="确认密码" prop="phone">
-        <el-input type="password" v-model="ruleForm.confirmPassword" placeholder="请再次输入您的登录密码"></el-input>
-      </el-form-item>
-      <el-form-item label="公司名称" prop="phone">
-        <el-input v-model="ruleForm.companyName" placeholder="
-请输入公司名称，个人用户请填写“个人”"></el-input>
-      </el-form-item>
-      <el-form-item label="联系人" prop="phone">
-        <el-input v-model="ruleForm.phone" placeholder="请输入联系人"></el-input>
-      </el-form-item>
-      <el-checkbox v-model="checked">我已阅读并同意</el-checkbox>
-      <el-button>完成注册</el-button>
-    </el-form>
-  </section>
+  <person-section title="我的信息">
+    <section class="info">
+      <el-form :model="infoForm" :rules="rules" refs="infoForm" label-position="right" label-width="100px">
+        <el-form-item label="账号" prop="account">
+          <p>{{infoForm.account}}</p>
+        </el-form-item>
+        <el-form-item label="联系人姓名" prop="userName">
+          <el-input v-model="infoForm.userName"></el-input>
+        </el-form-item>
+        <el-form-item label="联系人电话" prop="phone">
+          <el-input v-model="infoForm.phone"></el-input>
+        </el-form-item>
+        <el-form-item label="固话" prop="contactPhone">
+          <el-row :gutter="24">
+            <el-col :span="7"><el-input v-model="infoForm.phone"></el-input></el-col>
+            <el-col :span="16"><el-input v-model="infoForm.phone"></el-input></el-col>
+          </el-row>
+        </el-form-item>
+        <br>
+        <br>
+        <el-form-item label="公司名称" prop="companyName">
+          <el-input v-model="infoForm.companyName" placeholder="请输入公司名称，个人用户请填写“个人”"></el-input>
+        </el-form-item>
+        <el-form-item label="详细地址" prop="address">
+          <el-input v-model="infoForm.address"></el-input>
+        </el-form-item>
+        <el-form-item label="经营范围" prop="companyBussiness">
+          <el-input v-model="infoForm.companyBussiness"></el-input>
+        </el-form-item>
+        <el-button type="primary" class="info__save--button">保存</el-button>
+      </el-form>
+    </section>
+  </person-section>
 </template>
 
 <script>
+import personSection from '@/components/page/person/personSection'
 export default {
   data() {
     return {
-      registerForm: {
+      infoForm: {
         phone: '',
         companyName: '',
         password: '',
         companyName: ''
       },
-      rules:[]
+      rules: {
+        userName: [{
+          required: true,
+          message: '请输入联系人姓名'
+        }],
+        phone: [{
+          required: true,
+          message: '请输入联系人电话'
+        }]
+      }
     }
+  },
+  components: {
+    personSection
   }
 }
 </script>
 
-<style lang="css">
+<style lang="scss" scoped>
+@b info {
+    max-width: 400px;
+    padding-left:100px;
+    @e save {
+      @m button{
+        @include center;
+        width: 130px;
+      }
+    }
+}
 </style>

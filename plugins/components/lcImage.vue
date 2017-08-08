@@ -1,25 +1,35 @@
 <template lang="html">
-  <div class="lc-image" :style="getStyle" @click="handleClickImg" :class="{'is-overhidden':showOriginPic,'is-round':shape==='round'}">
-    <img class="ls-image--img" v-lazy="imgObj" :class="{'is-view':showOriginPic,'is-disabledHover':disabledHover}">
+  <div class="lc-image" :style="getStyle" @click="handleClickImg" :class="{'is-round':shape==='round'}">
+    <img class="ls-image--img" v-lazy="imgObj" :class="{'is-disabledHover':disabledHover}">
   </div>
 </template>
 
 <script>
+import emitter from 'element-ui/lib/mixins/emitter'
+const defaultUrl = require(`@/assets/img/default/changjia.png`)
 export default {
+  name: 'lcImage',
+  mixin: [emitter],
   props: {
     src: {
-      type: String
+      type: String,
+      default: ''
     },
     error: {
       type: String,
-      default: 'https://www.google.com.hk/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png'
+      default: defaultUrl
     },
     canView: {
       type: Boolean,
       default: true
     },
-    height: String,
-    width: String,
+    width: {
+      type: String,
+      default: '160'
+    },
+    height: {
+      type: String
+    },
     shape: {
       type: String,
       default: 'square'
@@ -35,7 +45,7 @@ export default {
     }
   },
   methods: {
-    handleImg() {
+    handleClickImg() {
       this.$emit('click');
     }
   },
@@ -44,6 +54,18 @@ export default {
       return {
         src: this.src,
         error: this.error
+      }
+    },
+    getStyle() {
+      if ((this.width && !this.height)) {
+        return {
+          'width': `${this.width}px`,
+          'height': `${this.width}px`
+        }
+      }
+      return {
+        'width': `${this.width}px`,
+        'height': `${this.height}px`
       }
     }
   }
@@ -67,9 +89,6 @@ export default {
         position: relative;
         box-sizing: border-box;
         vertical-align: middle;
-        @when overhidden {
-            overflow: auto;
-        }
         @when round {
             border-radius: 50%;
         }

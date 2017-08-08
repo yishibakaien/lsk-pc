@@ -1,37 +1,89 @@
 <template lang="html">
   <section class="shopcar">
-    <span class="shopcar--button">
-      我的购物车
-      <i class="shopcar--tag">0</i>
-    </span>
-    <div class="shopcar__item--inner">
-
+    <div class="shopcar__header">
+      <div class="shopcar__header--button" :class="{'is-hiddenBorder':isShow}" @mouseover="isShow=true" @mouseout="isShow=false">
+        <el-badge :value="3">
+          <span class="shopcar__header--inner">我的购物车</span>
+        </el-badge>
+        <i class="el-icon-arrow-right shopcar__header--arrow"></i>
+      </div>
+    </div>
+    <div class="shopcar__content" v-show="isShow" :class="{'is-hiddenBorder':isShow}" :style="{'top':getContentTop}">
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
+      sadjkl<br>
     </div>
   </section>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      isShow: false
+    }
+  },
+  computed: {
+    getContentTop() {
+      return
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@b shopcar{
-  @m button{
-    padding: 6px 30px;
-    border: 1px solid #eaeaea;
-    background: #999;
+:root{
+  --height: 38px;
+}
+@b shopcar {
     position: relative;
-    size:120px 50px;
-    box-sizing: border-box;
-  }
-  @m tag{
-    background: blue;
-    padding: 4px;
-    circle: 4px;
-    top:0;
-    right: 0;
-    position: absolute;
-  }
+    display: inline-block;
+    @e header {
+         @m button{
+            padding:0 30px;
+            height: var(--height);
+            line-height: var(--height);
+            position: relative;
+            border: 1px solid #eaeaea;
+            box-sizing: border-box;
+            width: 160px;
+            background: #fff;
+            @when hiddenBorder {
+                border-bottom-color: #fff;
+                z-index: 2;
+            }
+        }
+        @m inner {
+            padding-right: 8px;
+        }
+        @m arrow {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            color: grey;
+            transform: translateY(-50%);
+        }
+    }
+    @e content {
+        border: 1px solid #eaeaea;
+        position: absolute;
+        left: auto;
+        min-width: 200px;
+        right: 0;
+        top: calc(var(--height) - 1px);
+    }
 }
 </style>

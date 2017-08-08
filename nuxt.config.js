@@ -51,9 +51,6 @@ module.exports = {
     '~/theme/index.css', {
       src: '~/assets/sass/main.scss',
       lang: 'scss'
-    }, {
-      src: '~/assets/sass/element-reset.scss',
-      lang: 'scss'
     }
   ],
   babel: {
@@ -71,7 +68,7 @@ module.exports = {
   },
   build: {
     vendor: [
-      'axios', 'element-ui'
+      'axios', 'element-ui', 'vue-lazyload'
     ],
     /*
     ** Extend Nuxt Webpack config
@@ -88,23 +85,23 @@ module.exports = {
       })
     },
     postcss: [require('postcss-salad')({
-      'browsers': [
-        'ie > 8', 'last 20 versions'
-      ],
-      'features': {
-        'bem': {
-          'shortcuts': {
-            'component': 'b',
-            'modifier': 'm',
-            'descendent': 'e'
-          },
-          'separators': {
-            'descendent': '__',
-            'modifier': '--'
+        'browsers': [
+          'ie > 8', 'last 20 versions'
+        ],
+        'features': {
+          'bem': {
+            'shortcuts': {
+              'component': 'b',
+              'modifier': 'm',
+              'descendent': 'e'
+            },
+            'separators': {
+              'descendent': '__',
+              'modifier': '--'
+            }
           }
         }
-      }
-    })],
+      })],
     loaders: [
       {
         test: /\.(png|jpe?g|gif|svg)$/,
@@ -123,5 +120,5 @@ module.exports = {
       }
     ]
   },
-  plugins: ['~plugins/element-ui', '~plugins/components/index', '~plugins/axios-default']
+  plugins: ['~plugins/element-ui', '~plugins/components/index', '~plugins/lazyLoad.js', '~plugins/vuex-router-sync.js']
 }

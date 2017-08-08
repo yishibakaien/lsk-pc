@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 @b headerBar{
-  margin-top: 10px;
+  margin: 16px 0;
   display: flex;
   align-items: center;
   @e logo{
