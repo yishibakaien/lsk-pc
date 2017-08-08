@@ -91,7 +91,7 @@
 }
 
 .el-collapse{
-    border: 1px solid rgb(223, 230, 236);
+    border: 1px solid rgb(236, 223, 229);
     border-radius: 0;
 }
 
@@ -110,9 +110,9 @@
     line-height: 43px;
     padding-left: 15px;
     background-color: #fff;
-    color: rgb(72, 87, 106);
+    color: rgb(106, 72, 86);
     cursor: pointer;
-    border-bottom: 1px solid rgb(223, 230, 236);
+    border-bottom: 1px solid rgb(236, 223, 229);
     font-size: 13px;
 }
 
@@ -123,16 +123,16 @@
 
 .el-collapse-item__wrap{
     will-change: height;
-    background-color: rgb(251, 253, 255);
+    background-color: rgb(254, 250, 252);
     overflow: hidden;
     box-sizing: border-box;
-    border-bottom: 1px solid rgb(223, 230, 236);
+    border-bottom: 1px solid rgb(236, 223, 229);
 }
 
 .el-collapse-item__content{
     padding: 10px 15px;
     font-size: 13px;
-    color: rgb(31, 45, 61);
+    color: rgb(61, 31, 44);
     line-height: 1.769230769230769;
 }
 :root{
@@ -140,6 +140,7 @@
   -------------------------- */
     /* Colors
   -------------------------- */
+    /*--color-base-gray: color(var(--color-base-black) s(28%) l(86%));*/
     /* Link
   -------------------------- */
     /* Border

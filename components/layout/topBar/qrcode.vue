@@ -45,7 +45,7 @@ export default {}
     }
     @m title{
       font-weight: 700;
-      font-size:$font-size--sub;
+      font-size:$font-size-4;
     }
     @m tip{
       color: $color-danger;

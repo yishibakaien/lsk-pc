@@ -107,7 +107,7 @@
     display: inline-block;
     font-size: 18px;
     margin-right: 6px;
-    color: rgb(191, 203, 217);
+    color: rgb(217, 191, 202);
     transition: .3s;
 }
 
@@ -138,6 +138,7 @@
   -------------------------- */
     /* Colors
   -------------------------- */
+    /*--color-base-gray: color(var(--color-base-black) s(28%) l(86%));*/
     /* Link
   -------------------------- */
     /* Border

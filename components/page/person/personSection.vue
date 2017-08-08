@@ -21,7 +21,7 @@ export default {
 @b person {
     border-bottom: 1px solid #eaeaea;
     @m title {
-        font-size: $font-size--bigTitle;
+        font-size: $font-size-5;
         font-weight: 600;
         color: blue;
         padding: 6px 14px ;

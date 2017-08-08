@@ -95,7 +95,7 @@
     padding: 8px 16px;
     margin: 0;
     box-sizing: border-box;
-    border-radius: 4px;
+    border-radius: 1px;
     position: relative;
     background-color: #fff;
     overflow: hidden;
@@ -178,6 +178,7 @@
   -------------------------- */
     /* Colors
   -------------------------- */
+    /*--color-base-gray: color(var(--color-base-black) s(28%) l(86%));*/
     /* Link
   -------------------------- */
     /* Border

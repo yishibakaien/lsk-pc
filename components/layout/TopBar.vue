@@ -61,7 +61,7 @@ export default {
      @e wrapper{
         background: #f2f2f2;
         color: #999;
-        font-size: $font-size--tip;
+        font-size: $font-size-1;
         line-height: 33px;
         @m row {
             .el-col-2 {
