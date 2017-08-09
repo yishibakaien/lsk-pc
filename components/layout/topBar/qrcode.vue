@@ -3,7 +3,7 @@
     <el-popover ref="app" placement="bottom"  width="200"  trigger="hover">
       <el-row :gutter="10" class="qrcode__item">
         <el-col :span="12">
-          <img src="" alt="">
+          <lc-image width="60" src="~@/assets/img/qrcode/app.png"></lc-image>
         </el-col>
         <el-col :span="12">
           <p class="qrcode__item--title qrcode__item">手机蕾丝控</p>
@@ -14,7 +14,7 @@
     <el-popover ref="wechat" placement="bottom"  width="200"  trigger="hover">
       <el-row :gutter="10" class="qrcode__item">
         <el-col :span="12">
-          <img src="" alt="">
+          <lc-image width="60" src="~@/assets/img/qrcode/app.png"></lc-image>
         </el-col>
         <el-col :span="12">
           <p class="qrcode__item--title qrcode__item">关注微信公众号</p>
@@ -23,7 +23,7 @@
       </el-row>
     </el-popover>
     <el-col :span="2">
-      <a v-popover:app>手机蕾丝控</a>
+      <a v-popover:app><i class="iconfont icon-shouji"></i>手机蕾丝控</a>
     </el-col>
     <el-col :span="2">
       <a v-popover:wechat>公众号</a>
@@ -40,15 +40,28 @@ export default {}
 @b qrcode {
   @e item{
     margin-bottom: 4px;
-    .el-col-2{
-      text-align: center;
+    .el-col-2 {
+        text-align: center;
+        & + .el-col-2{
+          position: relative;
+          &:after{
+            content: '';
+            position: absolute;
+            left: 0;
+            transform: translateY(-50%);
+            top:50%;
+            width: 1px;
+            height: 60%;
+            background: $color-grey-4;
+          }
+        }
     }
     @m title{
       font-weight: 700;
-      font-size:$font-size-4;
+      font-size:$font-size-3;
     }
     @m tip{
-      color: $color-danger;
+      color: $color-primary;
     }
   }
 }

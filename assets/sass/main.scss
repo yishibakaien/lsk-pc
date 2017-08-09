@@ -1,5 +1,11 @@
+@import "./var.scss";
+@import url("http://at.alicdn.com/t/font_dykqs0rfqi79zfr.css");
 html{
   overflow-x: hidden;
+  color:$color-black;
+}
+html,body{
+  height: 100%;
 }
 a{
   cursor: pointer;
@@ -7,7 +13,7 @@ a{
   text-decoration: none;
   color: inherit;
   &:hover{
-    color:blue;
+    color:$color-grey-10;
   }
 }
 button,
@@ -18,4 +24,8 @@ textarea {
   font-size: inherit;
   line-height: inherit;
   color: inherit;
+}
+.iconfont{
+  padding: 0 4px;
+  font-size: inherit;
 }

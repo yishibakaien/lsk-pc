@@ -45,7 +45,13 @@ module.exports = {
    ** Customize the progress-bar color
    */
   loading: {
-    color: '#3B8070'
+    color: '#D40073'
+  },
+  extractCSS: true,
+  filenames: {
+    vendor: 'vendor.[hash:12].js',
+    app: 'hare.[chunkhash:12].js',
+    css: 'hare.[contenthash:12].css'
   },
   css: [
     '~/theme/index.css', {
@@ -85,23 +91,23 @@ module.exports = {
       })
     },
     postcss: [require('postcss-salad')({
-        'browsers': [
-          'ie > 8', 'last 20 versions'
-        ],
-        'features': {
-          'bem': {
-            'shortcuts': {
-              'component': 'b',
-              'modifier': 'm',
-              'descendent': 'e'
-            },
-            'separators': {
-              'descendent': '__',
-              'modifier': '--'
-            }
+      'browsers': [
+        'ie > 8', 'last 20 versions'
+      ],
+      'features': {
+        'bem': {
+          'shortcuts': {
+            'component': 'b',
+            'modifier': 'm',
+            'descendent': 'e'
+          },
+          'separators': {
+            'descendent': '__',
+            'modifier': '--'
           }
         }
-      })],
+      }
+    })],
     loaders: [
       {
         test: /\.(png|jpe?g|gif|svg)$/,

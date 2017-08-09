@@ -100,7 +100,7 @@
   height: 56px;
   line-height: 56px;
   font-size: 14px;
-  color: rgb(106, 72, 86);
+  color: rgb(106, 73, 72);
   padding: 0 20px;
   cursor: pointer;
   position: relative;
@@ -115,7 +115,7 @@
   position: relative;
   margin: 0;
   padding-left: 0;
-  background-color: rgb(246, 238, 241);
+  background-color: rgb(246, 239, 238);
 }
 
 .el-menu li{
@@ -123,23 +123,23 @@
 }
 
 .el-menu--dark{
-  background-color: rgb(87, 50, 63);
+  background-color: rgb(87, 53, 50);
 }
 
 .el-menu--dark .el-menu-item, .el-menu--dark .el-submenu__title{
-  color: rgb(217, 191, 202);
+  color: rgb(217, 191, 191);
 }
 
 .el-menu--dark .el-menu-item:hover, .el-menu--dark .el-submenu__title:hover{
-  background-color: rgb(106, 72, 86);
+  background-color: rgb(106, 73, 72);
 }
 
 .el-menu--dark .el-submenu .el-menu{
-  background-color: rgb(61, 31, 44);
+  background-color: #333333;
 }
 
 .el-menu--dark .el-submenu .el-menu .el-menu-item:hover{
-  background-color: rgb(106, 72, 86);
+  background-color: rgb(106, 73, 72);
 }
 
 .el-menu--horizontal{}
@@ -198,12 +198,12 @@
   position: static;
   vertical-align: middle;
   margin-left: 5px;
-  color: rgb(190, 151, 166);
+  color: rgb(190, 153, 151);
   margin-top: -3px;
 }
 
 .el-menu--horizontal .el-menu-item:hover, .el-menu--horizontal .el-submenu__title:hover{
-  background-color: rgb(246, 238, 241);
+  background-color: rgb(246, 239, 238);
 }
 
 .el-menu--horizontal > .el-menu-item:hover, .el-menu--horizontal > .el-submenu:hover .el-submenu__title, .el-menu--horizontal > .el-submenu.is-active .el-submenu__title{
@@ -213,11 +213,11 @@
 .el-menu--horizontal.el-menu--dark{}
 
 .el-menu--horizontal.el-menu--dark .el-menu-item:hover, .el-menu--horizontal.el-menu--dark .el-submenu__title:hover{
-  background-color: rgb(87, 50, 63);
+  background-color: rgb(87, 53, 50);
 }
 
 .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item, .el-menu--horizontal.el-menu--dark .el-submenu .el-submenu-title{
-  color: rgb(106, 72, 86);
+  color: rgb(106, 73, 72);
 }
 
 .el-menu--horizontal.el-menu--dark .el-submenu .el-menu-item:hover, .el-menu--horizontal.el-menu--dark .el-submenu .el-submenu-title:hover{
@@ -296,7 +296,7 @@
 }
 
 .el-submenu .el-menu{
-  background-color: rgb(241, 228, 231);
+  background-color: rgb(241, 230, 228);
 }
 
 .el-submenu .el-menu-item{
@@ -344,7 +344,7 @@
   line-height: normal;
   font-size: 14px;
   padding-left: 20px;
-  color: rgb(190, 151, 166);
+  color: rgb(190, 153, 151);
 }
 :root{
   /* Transition

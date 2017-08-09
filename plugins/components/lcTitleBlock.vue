@@ -10,6 +10,12 @@
 </template>
 
 <script>
+// 大标题（例如：————入驻信息————）
+//
+// **********
+// ** 用 法 **
+// **********
+// <lc-title-block :bodyStyle="{fontSize:14px}"></lc-title-block>
 export default {
   props: {
     bodyStyle: {

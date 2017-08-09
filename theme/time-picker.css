@@ -401,7 +401,7 @@
     font-size: 12px;
 }
 .el-time-spinner__item:hover:not(.disabled):not(.active) {
-    background: rgb(241, 228, 231);
+    background: rgb(241, 230, 228);
     cursor: pointer;
 }
 .el-time-spinner__item.active:not(.disabled) {
@@ -570,7 +570,7 @@
     background-color: transparent;
     outline: none;
     font-size: 12px;
-    color: rgb(165, 131, 144);
+    color: rgb(165, 132, 131);
 }
 .el-time-panel__btn.confirm {
     font-weight: 800;
@@ -674,19 +674,19 @@
     width: 100%;
 }
 .el-input.is-disabled .el-input__inner {
-    background-color: rgb(246, 238, 241);
+    background-color: rgb(246, 239, 238);
     border-color: #F2F2F2;
     color: #bbb;
     cursor: not-allowed;
 }
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
-    color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
 }
 .el-input.is-disabled .el-input__inner:-ms-input-placeholder {
-    color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
 }
 .el-input.is-disabled .el-input__inner::placeholder {
-    color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
 }
 .el-input.is-active .el-input__inner {
     outline: none;
@@ -699,9 +699,9 @@
     background-color: #fff;
     background-image: none;
     border-radius: 1px;
-    border: 1px solid rgb(217, 191, 202);
+    border: 1px solid rgb(217, 191, 191);
     box-sizing: border-box;
-    color: rgb(61, 31, 44);
+    color: #333333;
     display: inline-block;
     font-size: inherit;
     height: 36px;
@@ -712,16 +712,16 @@
     width: 100%;
 }
 .el-input__inner::-webkit-input-placeholder {
-    color: rgb(190, 151, 166);
+    color: rgb(190, 153, 151);
 }
 .el-input__inner:-ms-input-placeholder {
-    color: rgb(190, 151, 166);
+    color: rgb(190, 153, 151);
 }
 .el-input__inner::placeholder {
-    color: rgb(190, 151, 166);
+    color: rgb(190, 153, 151);
 }
 .el-input__inner:hover {
-    border-color: rgb(165, 131, 144);
+    border-color: rgb(165, 132, 131);
 }
 .el-input__inner:focus {
     outline: none;
@@ -734,7 +734,7 @@
     right: 0;
     top: 0;
     text-align: center;
-    color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
     transition: all .3s;
 }
 .el-input__icon:after {
@@ -750,10 +750,10 @@
 .el-input__icon.is-clickable {}
 .el-input__icon.is-clickable:hover {
     cursor: pointer;
-    color: rgb(165, 131, 144);
+    color: rgb(165, 132, 131);
 }
 .el-input__icon.is-clickable:hover + .el-input__inner {
-    border-color: rgb(165, 131, 144);
+    border-color: rgb(165, 132, 131);
 }
 .el-input--large {
     font-size: 16px;
@@ -785,11 +785,11 @@
 }
 .el-input-group__append, .el-input-group__prepend {
     background-color: rgb(254, 250, 252);
-    color: rgb(190, 151, 166);
+    color: rgb(190, 153, 151);
     vertical-align: middle;
     display: table-cell;
     position: relative;
-    border: 1px solid rgb(217, 191, 202);
+    border: 1px solid rgb(217, 191, 191);
     border-radius: 1px;
     padding: 0 10px;
     width: 1px;
@@ -833,19 +833,19 @@
     vertical-align: bottom;
 }
 .el-textarea.is-disabled .el-textarea__inner {
-    background-color: rgb(246, 238, 241);
+    background-color: rgb(246, 239, 238);
     border-color: #F2F2F2;
     color: #bbb;
     cursor: not-allowed;
 }
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
-    color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
 }
 .el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder {
-    color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
 }
 .el-textarea.is-disabled .el-textarea__inner::placeholder {
-    color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
 }
 .el-textarea__inner {
     display: block;
@@ -855,24 +855,24 @@
     box-sizing: border-box;
     width: 100%;
     font-size: 14px;
-    color: rgb(61, 31, 44);
+    color: #333333;
     background-color: #fff;
     background-image: none;
-    border: 1px solid rgb(217, 191, 202);
+    border: 1px solid rgb(217, 191, 191);
     border-radius: 1px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
 }
 .el-textarea__inner::-webkit-input-placeholder {
-    color: rgb(190, 151, 166);
+    color: rgb(190, 153, 151);
 }
 .el-textarea__inner:-ms-input-placeholder {
-    color: rgb(190, 151, 166);
+    color: rgb(190, 153, 151);
 }
 .el-textarea__inner::placeholder {
-    color: rgb(190, 151, 166);
+    color: rgb(190, 153, 151);
 }
 .el-textarea__inner:hover {
-    border-color: rgb(165, 131, 144);
+    border-color: rgb(165, 132, 131);
 }
 .el-textarea__inner:focus {
     outline: none;
@@ -992,11 +992,11 @@
     height: 0;
     cursor: pointer;
     border-radius: inherit;
-    background-color: rgba(190, 151, 166, 0.3);
+    background-color: rgba(190, 153, 151, 0.3);
     transition: .3s background-color;
 }
 .el-scrollbar__thumb:hover {
-    background-color: rgba(190, 151, 166, 0.5);
+    background-color: rgba(190, 153, 151, 0.5);
 }
 .el-scrollbar__bar {
     position: absolute;

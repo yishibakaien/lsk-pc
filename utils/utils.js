@@ -55,9 +55,9 @@ export const classifyArr = ($arr, $typeKey) => {
   }, {})
   return result
 }
-// ===========
-// **数组归类**
-// ===========
+// ==================
+// **通过path获取name*
+// ==================
 export const getNameByRoute = (map, route) => {
   let name = ''
   Object.keys(map).some(path => {
@@ -67,4 +67,22 @@ export const getNameByRoute = (map, route) => {
     }
   })
   return name
+}
+// ==================
+// ** 合成&下载图片 **
+// ==================
+ // * 1.获取mimeType
+export const _fixType = (type) => {
+  type = type.toLowerCase().replace(/jpg/i, 'jpeg')
+  var r = type.match(/png|jpeg|bmp|gif/)[0]
+  return 'image/' + r
+}
+ // * 2.在本地进行文件保存
+export const saveFile = (data, filename) => {
+  var savelink = document.createElementNS('http://www.w3.org/1999/xhtml', 'a')
+  savelink.href = data
+  savelink.download = filename
+  var event = document.createEvent('MouseEvents')
+  event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+  savelink.dispatchEvent(event)
 }

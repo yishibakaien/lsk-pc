@@ -28,9 +28,6 @@
 
 <script>
 import {
-  getNameByRoute
-} from '@/utils/utils'
-import {
   mapGetters
 } from 'vuex'
 export default {
@@ -59,23 +56,23 @@ export default {
 }
 @b person {
      @e menu{
-        border: 1px solid #eaeaea;
+        border: 1px solid $color-grey-5;
         padding: var(--menu-padding);
         @m item {
-            border-top: 1px dotted #eaeaea;
+            border-top: 1px dotted $color-grey-5;
             text-align: center;
             .subItem {
                 padding: 10px 0;
             }
             .is-active {
-                color: blue;
+                color: $color-primary;
                 position: relative;
                 &:before {
                     content: "";
                     position: absolute;
                     width: 4px;
                     height: 100%;
-                    background: blue;
+                    background: $color-primary;
                     left: -10px;
                 }
             }

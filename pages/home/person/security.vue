@@ -1,18 +1,27 @@
 <template lang="html">
   <section class="security">
     <el-row :gutter="10">
-      <el-col :span="3">您当前的账号</el-col>
-      <el-col :span="18">13928766967</el-col>
-      <el-col :span="3">&nbsp;</el-col>
-      <el-col :span="3">登录密码</el-col>
-      <el-col :span="18">建议您定期更换密码，设置安全性高的密码可以使帐号更安全</el-col>
-      <el-col :span="3">
-        <el-button type="text">修改</el-button>
+      <el-col :span="4">您当前的账号</el-col>
+      <el-col :span="20">13928766967</el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="4">
+        <i class="iconfont icon-xuanzhe"></i>
+        登录密码
       </el-col>
-      <el-col :span="3">手机号码</el-col>
-      <el-col :span="18">绑定手机：139****6967，若手机丢失或停用，请及时更换</el-col>
+      <el-col :span="17">建议您定期更换密码，设置安全性高的密码可以使帐号更安全</el-col>
       <el-col :span="3">
-        <el-button type="text">更换</el-button>
+        <el-button class="security__wrapper--button">修改</el-button>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="4">
+        <i class="iconfont icon-xuanzhe"></i>
+        手机号码
+      </el-col>
+      <el-col :span="17">绑定手机：139****6967，若手机丢失或停用，请及时更换</el-col>
+      <el-col :span="3">
+        <el-button class="security__wrapper--button">更换</el-button>
       </el-col>
     </el-row>
     <!-- ====== -->
@@ -54,5 +63,21 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="scss" scoped>
+@b security{
+  box-sizing: border-box;
+  padding-top: 86px;
+  padding-left: 30px;
+  .el-col{
+    margin-bottom: 28px;
+  }
+  .icon-xuanzhe{
+    color: $color-info;
+  }
+  @e wrapper{
+    @m button{
+      width: 120px;
+    }
+  }
+}
 </style>

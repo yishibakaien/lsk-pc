@@ -7,16 +7,15 @@
         新建地址
       </el-button>
     </div>
-    <el-table  :data="tableData" border>
-      <el-table-column  label="收货人"   width="180">
+    <el-table  :data="tableData">
+      <el-table-column  label="收货人"  width="120">
         <template scope="scope">
           <el-icon name="time"></el-icon>
         </template>
       </el-table-column>
-      <el-table-column label="地址" >
+      <el-table-column label="地址">
         <template scope="scope">
           <el-popover trigger="hover" placement="top">
-            <p>姓名: {{ scope.row.name }}</p>
             <p>住址: {{ scope.row.address }}</p>
             <div slot="reference" class="name-wrapper">
               <el-tag>{{ scope.row.name }}</el-tag>
@@ -24,20 +23,24 @@
           </el-popover>
         </template>
       </el-table-column>
-      <el-table-column  label="联系方式"   width="180">
+      <el-table-column  label="联系方式"  width="130">
         <template scope="scope">
-          <el-icon name="time"></el-icon>
-          <span style="margin-left: 10px">{{ scope.row.date }}</span>
+          18649801922
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="300">
+      <el-table-column label="操作" width="150">
         <template scope="scope">
-          <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button  size="small"  type="danger"  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          <el-button type="text" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <span class="line"></span>
+          <el-button  size="small"  type="text"  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column width="100">
+        <template scope="scope">
           <el-button  size="small"  @click="handleDelete(scope.$index, scope.row)">设置默认地址</el-button>
         </template>
       </el-table-column>
+
     </el-table>
     <!-- ========= -->
     <!-- **对话框** -->
@@ -62,9 +65,6 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <el-form-item label="收货人" prop="confirmPwd">
-          <el-input v-model="addForm.confirmPwd"></el-input>
-        </el-form-item>
         <el-row :gutter="12">
           <el-col :span="12">
             <el-form-item prop="address">
@@ -141,7 +141,7 @@ export default {
 }
 .line {
     position: relative;
-    padding: 0 20px;
+    padding: 0 10px;
     &:after {
         content: '';
         position: absolute;

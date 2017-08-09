@@ -18,7 +18,7 @@
   <!-- ====== -->
   <el-row class="header__wrapper--row">
     <el-col :span="2">
-      <router-link to="/" tag="a">蕾丝控首页</router-link>
+      <router-link to="/" tag="a"><i class="iconfont icon-shouye"></i>蕾丝控首页</router-link>
     </el-col>
     <el-col :span="12">
       <login-status></login-status>
@@ -66,6 +66,17 @@ export default {
         @m row {
             .el-col-2 {
                 text-align: center;
+                position: relative;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    transform: translateY(-50%);
+                    top: 50%;
+                    right: 0;
+                    width: 1px;
+                    height: 60%;
+                    background: $color-grey-4;
+                }
             }
         }
     }

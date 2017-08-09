@@ -117,7 +117,7 @@
     display: inline-block;
     position: absolute;
     border-color: inherit;
-    background-color: rgb(217, 191, 202);
+    background-color: rgb(217, 191, 191);
 }
 
 .el-step__line.is-vertical{
@@ -190,13 +190,13 @@
 }
 
 .el-step__head.is-wait{
-    color: rgb(217, 191, 202);
-    border-color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
+    border-color: rgb(217, 191, 191);
 }
 
 .el-step__head.is-process{
-    color: rgb(217, 191, 202);
-    border-color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
+    border-color: rgb(217, 191, 191);
 }
 
 .el-step__head.is-text{
@@ -224,15 +224,15 @@
 }
 
 .el-step__head.is-text.is-wait{
-    color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
     background-color: #fff;
-    border-color: rgb(217, 191, 202);
+    border-color: rgb(217, 191, 191);
 }
 
 .el-step__head.is-text.is-process{
     color: #fff;
-    background-color: rgb(217, 191, 202);
-    border-color: rgb(217, 191, 202);
+    background-color: rgb(217, 191, 191);
+    border-color: rgb(217, 191, 191);
 }
 
 .el-step__main{
@@ -264,12 +264,12 @@
 
 .el-step__title.is-wait{
     font-weight: 400;
-    color: rgb(190, 151, 166);
+    color: rgb(190, 153, 151);
 }
 
 .el-step__title.is-process{
     font-weight: 700;
-    color: rgb(106, 72, 86);
+    color: rgb(106, 73, 72);
 }
 
 .el-step__description{
@@ -291,11 +291,11 @@
 }
 
 .el-step__description.is-wait{
-    color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
 }
 
 .el-step__description.is-process{
-    color: rgb(165, 131, 144);
+    color: rgb(165, 132, 131);
 }
 :root{
     /* Transition

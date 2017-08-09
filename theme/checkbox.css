@@ -91,7 +91,7 @@
 }
 
 .el-checkbox{
-    color: rgb(61, 31, 44);
+    color: #333333;
     position: relative;
     cursor: pointer;
     display: inline-block;
@@ -117,7 +117,7 @@
 
 .el-checkbox__input.is-indeterminate .el-checkbox__inner{
     background-color: #D40073;
-    border-color: rgb(193, 1, 106)
+    border-color: rgba(212,0,115,0.10)
 }
 
 .el-checkbox__input.is-indeterminate .el-checkbox__inner::before{
@@ -141,7 +141,7 @@
 
 .el-checkbox__input.is-checked .el-checkbox__inner{
     background-color: #D40073;
-    border-color: rgb(193, 1, 106)
+    border-color: rgba(212,0,115,0.10)
 }
 
 .el-checkbox__input.is-checked .el-checkbox__inner::after{
@@ -149,14 +149,14 @@
 }
 
 .el-checkbox__input.is-disabled .el-checkbox__inner{
-    background-color: rgb(246, 238, 241);
+    background-color: rgb(246, 239, 238);
     border-color: #F2F2F2;
     cursor: not-allowed
 }
 
 .el-checkbox__input.is-disabled .el-checkbox__inner::after{
     cursor: not-allowed;
-    border-color: rgb(246, 238, 241)
+    border-color: rgb(246, 239, 238)
 }
 
 .el-checkbox__input.is-disabled .el-checkbox__inner + .el-checkbox__label{
@@ -189,7 +189,7 @@
 .el-checkbox__inner{
     display: inline-block;
     position: relative;
-    border: 1px solid rgb(217, 191, 202);
+    border: 1px solid rgb(217, 191, 191);
     border-radius: 1px;
     box-sizing: border-box;
     width: 18px;
@@ -252,10 +252,10 @@
 .el-checkbox-button.is-disabled{}
 
 .el-checkbox-button.is-disabled .el-checkbox-button__inner{
-    color: rgb(217, 191, 202);
+    color: rgb(217, 191, 191);
     cursor: not-allowed;
     background-image: none;
-    background-color: rgb(246, 238, 241);
+    background-color: rgb(246, 239, 238);
     border-color: #F2F2F2;
     box-shadow: none
 }
@@ -267,7 +267,7 @@
 }
 
 .el-checkbox-button:first-child .el-checkbox-button__inner{
-    border-left: 1px solid rgb(217, 191, 202);
+    border-left: 1px solid rgb(217, 191, 191);
     border-radius: 1px 0 0 1px;
     box-shadow: none !important
 }
@@ -283,9 +283,9 @@
     vertical-align: middle;
     cursor: pointer;
     background: #fff;
-    border: 1px solid rgb(217, 191, 202);
+    border: 1px solid rgb(217, 191, 191);
     border-left: 0;
-    color: rgb(61, 31, 44);
+    color: #333333;
     -webkit-appearance: none;
     text-align: center;
     box-sizing: border-box;

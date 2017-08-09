@@ -113,7 +113,7 @@
 }
 
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected.hover{
-    background-color: rgb(241, 228, 231);
+    background-color: rgb(241, 230, 228);
 }
 
 .el-select-dropdown.is-multiple .el-select-dropdown__item.selected::after{

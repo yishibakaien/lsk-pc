@@ -1,12 +1,6 @@
 // **********
 // 需要用的颜色
 // **********
-$color-primary:#D40073;
-$color-secondary:rgba(212,0,115,0.10);
-$color-danger:#ff4949;
-$color-warning:#FF8400;
-$color-white:#fff;
-$color-black:#333333;
 // 灰 色
 $color-grey-1:#F9F9F9;
 $color-grey-2:#F5F5F5;
@@ -18,6 +12,16 @@ $color-grey-8:#BBBBBB;
 $color-grey-7:#999999;
 $color-grey-9:#666666;
 $color-grey-10:#3F3F3F;
+
+$color-primary:#D40073;
+$color-light-primary:rgba(212,0,115,0.10);
+$color-extra-primary:#A6005A;
+$color-danger:#ff4949;
+$color-warning:#FF8400;
+$color-info:#4C93FD;
+$color-white:#fff;
+$color-extra-white:$color-grey-1;
+$color-black:#333333;
 // **********
 // 字 体 大 小
 // **********
