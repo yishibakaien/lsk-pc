@@ -71,13 +71,13 @@ export const getNameByRoute = (map, route) => {
 // ==================
 // ** 合成&下载图片 **
 // ==================
- // * 1.获取mimeType
+// * 1.获取mimeType
 export const _fixType = (type) => {
   type = type.toLowerCase().replace(/jpg/i, 'jpeg')
   var r = type.match(/png|jpeg|bmp|gif/)[0]
   return 'image/' + r
 }
- // * 2.在本地进行文件保存
+// * 2.在本地进行文件保存
 export const saveFile = (data, filename) => {
   var savelink = document.createElementNS('http://www.w3.org/1999/xhtml', 'a')
   savelink.href = data
@@ -85,4 +85,27 @@ export const saveFile = (data, filename) => {
   var event = document.createEvent('MouseEvents')
   event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
   savelink.dispatchEvent(event)
+}
+// ==================
+// 图片与canvas互相转换
+// ==================
+export const convertImgToBase64 = (url, callback, error, outputFormat) => {
+  var canvas = document.createElement('canvas')
+  var ctx = canvas.getContext('2d')
+  function requestImg (src) {
+    var img = new Image()
+    img.crossOrigin = 'Anonymous'
+    var timeStamp = +new Date()
+    img.src = `${src}?r=${timeStamp}`
+    return img
+  }
+  var imgObj = requestImg(url)
+  imgObj.onload = () => {
+    canvas.height = imgObj.height
+    canvas.width = imgObj.width
+    ctx.drawImage(imgObj, 0, 0)
+    var dataURL = canvas.toDataURL(outputFormat || 'image/png')
+    callback.call(this, dataURL)
+    canvas = null
+  }
 }
