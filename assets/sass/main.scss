@@ -1,0 +1,159 @@
+html {
+    overflow-x: hidden;
+}
+a {
+    cursor: pointer;
+    transition: 0.5s;
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+        color: blue;
+    }
+}
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+em {
+    font-style: normal;
+}
+.wrap {
+    max-width: 1190px;
+    margin: 0 auto;
+}
+// 浮动与清除浮动
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.clearfix {
+    zoom: 1;
+}
+.clearfix::after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+// radio-tile
+.listScreen__box {
+    height: 36px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-bottom: 0;
+    span {
+        display: inline-block;
+        font-size: 13px;
+    }
+    .title {
+        float: left;
+        width: 120px;
+        height: 36px;
+        background: rgb(242,242,242);
+        line-height: 36px;
+        text-align: center;
+    }
+    &:last-child {
+        border-bottom: 1px solid #e5e5e5;
+    }
+}
+// detail - supply/buy/flower
+.detailBox {
+    .detailBrder {
+        margin: 15px 0;
+        width: 100%;
+        border-bottom: 1px dashed $color-grey-4;
+    }
+    &__l {
+        margin-right: 15px;
+        width: 462px;
+        .bigImg {
+            box-sizing: border-box;
+            width: 460px;
+            height: 460px;
+            border: 1px solid $color-grey-5;
+            cursor: pointer;
+            img {
+                width: 100%;
+            }
+        }
+        .imgGroup {
+            margin: 15px 0;
+            img {
+                padding-right: 15px;
+                width: 80px;
+                height: 80px;
+                &:nth-of-type(5n) {
+                    padding: 0;
+                }
+            }
+        }
+        .collection {
+            text-align: center;
+            span {
+                font-size: $font-size--sub-content;
+                color: $color-grey-9;
+                cursor: pointer;
+            }
+            .iconfont {
+                padding-right: 2px;
+                color: $color-primary;
+            }
+        }
+    }
+    &__r {
+        width: 712px;
+        h3 {
+            margin: 10px 0;
+            line-height: 1.8;
+            font-size: 18px;
+            font-weight: bold;
+            color: $color-black;
+        }
+        .detailInfo {
+            p {
+                color: $color-black;
+                font-size: $font-size--content;
+                line-height: 36px;
+                .title {
+                    display: inline-block;
+                    width: 58px;
+                    color: $color-grey-7;
+                }
+            }
+            .price {
+                color: $color-grey-6;
+                .priceNum {
+                    color: $color-primary;
+                    font-weight: 600;
+                    font-size: 20px;
+                    b {
+                        font-size: 12px;
+                    }
+                }
+            }
+            .colorCard {
+                display: inline-block;
+                span {
+                    vertical-align: top;
+                }
+                img {
+                    padding-right: 5px;
+                    width: 68px;
+                    height: 68px;
+                    &:nth-of-type(9n) {
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+}
