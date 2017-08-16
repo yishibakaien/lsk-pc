@@ -1,7 +1,7 @@
 <template>
 	<div class="supplyDetailBusiness">
 		<div class="supplyDetailBusiness__title clearfix">
-			<img src="~assets/img/logo/design_diy.png" class="fl" alt="商户头像"/>
+			<img src="~static/img/logo/design_diy.png" class="fl" alt="商户头像"/>
 			<p class="name">立春针织</p>
 			<p class="num">Ta的总供应数：<em>4个</em><el-button type="primary" size="mini" style="position: relative; top: -2px;">进店逛逛</el-button></p>
 			<p class="phone">电话：18888888888</p>
@@ -9,7 +9,7 @@
 		<div class="supplyDetailBusiness__content">
 			<div class="supplyDetailBusiness__content--items clearfix">
 				<div class="item fl" v-for="item in 8">
-					<img src="~assets/img/default/morenhuaxing.png" alt="更多供应"/>
+					<img src="~static/img/default/morenhuaxing.png" alt="更多供应"/>
 				</div>
 			</div>
 			<lc-page-bar :showOpt="true" :pageNum="pageData.pageNum" :pageMax="pageData.pageMax" @upPage="upPage" @downPage="downPage" @selectFirstPage="selectFirstPage" @selectLastPage="selectLastPage"></lc-page-bar>

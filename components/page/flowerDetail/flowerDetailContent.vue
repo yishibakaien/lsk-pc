@@ -3,10 +3,10 @@
 		<div class="detailBox clearfix">
 			<div class="detailBox__l fl">
 				<div class="bigImg">
-					<img src="~assets/img/default/morenhuaxing.png" />
+					<img src="~static/img/default/morenhuaxing.png" />
 				</div>
 				<div class="imgGroup">
-					<img v-for="item in 5" src="~assets/img/default/maoyishang.png" :key="item" />
+					<img v-for="item in 5" src="~static/img/default/maoyishang.png" :key="item" />
 				</div>
 				<div class="collection">
 					<span><i class="iconfont el-icon-star-on"></i>收藏花型</span>
@@ -24,7 +24,7 @@
 					<div class="detailBrder"></div>
 					<p class="colorCard">
 						<span class="title">色卡：</span>
-						<img v-for="item in 9" src="~assets/img/default/changjia.png" />
+						<img v-for="item in 9" src="~static/img/default/changjia.png" />
 					</p>
 					<p>
 						<span class="title fl">类型：</span>

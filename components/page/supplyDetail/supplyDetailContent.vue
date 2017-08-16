@@ -3,7 +3,7 @@
 		<div class="detailBox clearfix">
 			<div class="detailBox__l fl">
 				<div class="bigImg2 bigImg">
-					<img src="~assets/img/default/morenhuaxing.png" />
+					<img src="~static/img/default/morenhuaxing.png" />
 				</div>
 				<div class="collection">
 					<span><i class="iconfont el-icon-star-on"></i>收藏花型</span>

@@ -14,7 +14,7 @@
 			</div>
 			<div class="buyDetailList__content--main clearfix" v-else>
 				<div class="item fl" v-for="item in 10">
-					<img src="~assets/img/default/changjia.png"/>
+					<img src="~static/img/default/changjia.png"/>
 				</div>
 			</div>
 		</div>

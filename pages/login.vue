@@ -76,7 +76,7 @@ export default {
 <style lang="scss" scoped>
 @b login {
      @e wrapper{
-        background: url("~assets/img/bg/login.jpg")no-repeat;
+        background: url("~static/img/bg/login.jpg")no-repeat;
         background-size: auto 100%;
         position: relative;
         background-position: center 10%;
