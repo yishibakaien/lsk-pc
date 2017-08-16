@@ -1,66 +1,69 @@
 <template lang="html">
-  <div class="onepx dress-wrapper">
-    <div class="dress-wrapper__left">
-      <el-card>
-        <div slot="menu">
-          <el-button type="primary" @click="handleSavePic" :disabled="!Pic.uploadPic">保存图片</el-button>
-        </div>
-          <img :src="Pic.origin" crossOrigin="anonymous" ref="picOrigin" class="transition" :style="{'background-image':`url(${Pic.uploadPic})`,'background-size':`${ratio/4}%`}">
-      </el-card>
-    </div>
-    <div class="dress-wrapper__right">
-      <el-card>
-        <div slot="menu">
-          <label v-if="!$slots.uploadBtn">
-            <i class="icon-shangchuan"></i>
-            <input type="file" accept="image/jpeg,image/jpg,image/png"  name="file" value="" @change="handleUpload" v-show="false">
-          </label>
-          <slot name="uploadBtn"></slot>
-        </div>
-        <div class="dress-upload">
-          <div class="dress-upload-zoom">
-            <p @click="handleZoom('+')">+</p>
-            <p @click="handleZoom('-')">—</p>
+  <div class="dress-wrapper">
+    <el-row :gutter="15">
+      <el-col :span="16">
+        <el-card>
+          <div slot="header" class="dress-wrapper--header">
+            <h1>3D试衣</h1>
+            <div>
+              <el-button  @click="handleDIYClothes" :disabled="!Pic.uploadPic">版衣定制</el-button>
+              <el-button type="primary" @click="handleSavePic" :disabled="!Pic.uploadPic">保存图片</el-button>
+            </div>
           </div>
-          <div class="dress-upload-img" :style="{'background-image':`url(${Pic.uploadPic})`,'background-size':`${ratio}%`}">
+            <img v-lazy="Pic.origin" crossOrigin="anonymous" ref="picOrigin" class="dress-wrapper--img" :style="{'background-image':`url(${Pic.uploadPic})`,'background-size':`${ratio/4}%`}">
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card>
+          <div slot="header" class="dress-wrapper--header">
+            <h1>花型预览</h1>
+            <label v-if="!$slots.uploadBtn">
+              <i class="el-icon-upload dress-upload--icon"></i>
+              <input type="file" accept="image/jpeg,image/jpg,image/png"  name="file" value="" @change="handleUpload" v-show="false">
+            </label>
+            <slot name="uploadBtn"></slot>
           </div>
-          <p class="dress-upload--text" v-if="hasUploadPic">请先上传花型图片</p>
-        </div>
-        <slot name="productMenu"></slot>
-      </el-card>
-      <!-- <el-section pageTitle="选择模特" class="onepx">
-        <el-grid>
-          <el-grid-item v-for="(item,index) in MODELS" :class="{'dress-active':index===Pic.activeIndex}" :key="item" @click="handleViewModels(item,index)">
-            <el-image
-             width="88"
-             height="100"
-             :canView="false"
-             disabledHover
-             :src="`${MODEL_THUMBNAIL_DOMAIN}${item}`">
-             </el-image>
-           </el-grid-item>
-        </el-grid>
-      </el-section> -->
-    </div>
+          <!-- 上传区域 -->
+          <div class="dress-upload">
+            <div class="dress-upload__zoom">
+              <p @click="handleZoom('+')"><i class="el-icon-plus"></i></p>
+              <p @click="handleZoom('-')"><i class="el-icon-minus"></i></p>
+            </div>
+            <div class="dress-upload__img" :style="{'background-image':`url(${Pic.uploadPic})`,'background-size':`${ratio}%`}">
+            </div>
+            <p class="dress-upload--text" v-if="hasUploadPic">请先上传花型图片</p>
+          </div>
+          <slot name="productMenu"></slot>
+        </el-card>
+        <br/>
+        <el-row>
+        <el-col :span="8" v-for="(item, index) in MODELS" :key="item" class="dress-model">
+          <el-card>
+            <img @click="handleViewModels(item,index)" v-lazy="`${MODEL_THUMBNAIL_DOMAIN}${item}`"  width="88" height="100" class="dress-model--img">
+          </el-card>
+        </el-col>
+      </el-row>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 import {
-  MODELS
-} from '@/common/dict/const';
-// import {
-//   getPicBase64
-// } from '@/common/api/api';
-import html2canvas from 'html2canvas';
-const MODEL_THUMBNAIL_DOMAIN = '/static/images/modles_prototype/';
-const MODEL_ORIGIN_DOMAIN = '/static/images/modles/';
+  _fixType,
+  saveFile,
+  convertImgToBase64
+} from '@/utils/utils'
+import DICT from '@/utils/consts/consts'
+import html2canvas from 'html2canvas'
+const MODEL_THUMBNAIL_DOMAIN = '/img/models_prototype/'
+const MODEL_ORIGIN_DOMAIN = '/img/models/'
 const TYPE = 'png';
-
+const SESSION = 'design-clothes';
 export default {
   data() {
     return {
-      MODELS: MODELS,
+      MODELS: DICT.MODEL,
       MODEL_THUMBNAIL_DOMAIN: MODEL_THUMBNAIL_DOMAIN,
       MODEL_ORIGIN_DOMAIN: MODEL_ORIGIN_DOMAIN,
       url: '',
@@ -77,33 +80,37 @@ export default {
       }
     };
   },
-  props: ['chooseItem'],
   created() {
-    this.url = sessionStorage['flowerUrl'];
+    this.Pic.activeIndex = 0;
+  },
+  // props: ['chooseItem'],
+  mounted() {
+    // 默认取第一张
+    // this.url = window.sessionStorage['flowerUrl'];
   },
   mounted() {
     this.Pic.activeIndex = 0;
     if (this.url) {
       let img = this.url.indexOf('?') >= 0 ? this.url.split('?')[0] : this.url;
-      this.convertImgToBase64(img, base64Img => {
-        this.Pic.uploadPic = base64Img;
-      });
+        convertImgToBase64(img, base64Img => {
+          this.Pic.uploadPic = base64Img;
+        });
     }
   },
   beforeDestroy() {
-    sessionStorage.removeItem('flowerUrl');
+    // window.sessionStorage.removeItem('flowerUrl');
   },
   watch: {
     Pic: {
       handler(val) {
-        val.origin = MODEL_ORIGIN_DOMAIN + MODELS[val.activeIndex];
-        val.thumbnail = MODEL_THUMBNAIL_DOMAIN + MODELS[val.activeIndex];
+        val.origin = MODEL_ORIGIN_DOMAIN + this.MODELS[val.activeIndex];
+        val.thumbnail = MODEL_THUMBNAIL_DOMAIN + this.MODELS[val.activeIndex];
       },
       deep: true
-    },
-    chooseItem(val) {
-      this.Pic.uploadPic = val;
     }
+    // chooseItem(val) {
+    //   this.Pic.uploadPic = val;
+    // }
   },
   computed: {
     hasUploadPic() {
@@ -111,21 +118,33 @@ export default {
     }
   },
   methods: {
-    // 保存图片
-    handleSavePic() {
+    // HTML2TOCANVAS
+    handleHtmlToCanvas(img, callback) {
       let self = this;
       console.log('正在保存图片');
-      html2canvas(this.$refs.picOrigin, {
+      html2canvas(img, {
         useCORS: true,
         onrendered: function(canvas) {
           var imgData = canvas.toDataURL(TYPE);
-          // 加工image data，替换mime type
-          imgData = imgData.replace(self._fixType(TYPE), 'image/octet-stream');
-          // 下载后的问题名
-          var filename = 'models_' + (new Date()).getTime() + '.' + TYPE;
-          // 下载
-          self.saveFile(imgData, filename);
+          callback(imgData);
         }
+      });
+    },
+    // 保存图片
+    handleSavePic() {
+      this.handleHtmlToCanvas(this.$refs.picOrigin, (data) => {
+        // 1.加工image data，替换mime type
+        let imgData = data.replace(_fixType(TYPE), 'image/octet-stream')
+        // 2.下载后的问题名
+        let filename = 'models_' + (new Date()).getTime() + '.' + TYPE
+        // 3.下载
+        saveFile(imgData, filename);
+      })
+    },
+    // 版衣定制
+    handleDIYClothes() {
+      this.handleHtmlToCanvas(this.$refs.picOrigin, (data) => {
+        sessionStorage[SESSION] = data;
       });
     },
     // 上传花型
@@ -150,70 +169,67 @@ export default {
   }
 };
 </script>
-
-// <style lang="scss" scoped>
-// @component-namespace dress{
-//   @b upload{
-//     min-height: 300px;
-//     box-sizing: border-box;
-//     padding-left: 50px;
-//     position: relative;
-//     @e img{
-//       width: 280px;
-//       height: 280px;
-//       overflow: hidden;
-//       transition: all 0.8s;
-//     }
-//     @m text{
-//       position: absolute;
-//       top: 50%;
-//       left: 50%;
-//       transform: translate(-50%,-50%);
-//       color: grey;
-//     }
-//     @e zoom{
-//       position: absolute 4px 10px;
-//       p{
-//         border: 1px solid #eaeaea;
-//         width: 30px;
-//         height: 30px;
-//         cursor: pointer;
-//         line-height: 27px;
-//         font-size: 22px;
-//         text-align: center;
-//         margin-bottom: 10px;
-//         transition: .8s;
-//         &:hover{
-//           border-color:#4c93fd;
-//           color:#4c93fd;
-//         }
-//       }
-//     }
-//   }
-//   @b active{
-//     box-shadow: 0 2px 4px 0 rgba(76,147,253,0.30), 0 0 6px 0 rgba(76,147,253,0.30);
-//   }
-//   @b wrapper{
-//     display: flex;
-//     @e left{
-//       max-width: 70%;
-//       width: 70%;
-//     }
-//     @e right{
-//       max-width: 30%;
-//       width: 30%;
-//       margin-left: 10px;
-//       padding-right: 10px;
-//       margin-top: 10px;
-//       .icon-shangchuan{
-//         font-size: 20px;
-//         padding-right: 10px;
-//         cursor: pointer;
-//       }
-//     }
-//   }
-// }
-// .transition{
-//   transition: all 0.8s;
-// }
+<style lang="scss" scoped>
+@component-namespace dress {
+     @b wrapper{
+        @m header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        @m img {
+            transition: 0.8s;
+        }
+    }
+    @b model {
+        transition: 0.8s;
+        &:hover {
+            box-shadow: 0 2px 4px 0 $color-light-primary, 0 0 6px 0 $color-light-primary;
+        }
+    }
+    @b upload {
+        min-height: 300px;
+        box-sizing: border-box;
+        padding-left: 50px;
+        position: relative;
+        @e img {
+            width: 280px;
+            height: 280px;
+            overflow: hidden;
+            transition: all 0.8s;
+        }
+        @e img {
+            size: 280px;
+            overflow: hidden;
+            transition: all 0.8s;
+        }
+        @m icon {
+            font-size: 20px;
+            padding-right: 10px;
+            cursor: pointer;
+        }
+        @m text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: grey;
+        }
+        @e zoom {
+            position: absolute 4px 10px;
+            p {
+                border: 1px solid $color-grey-4;
+                size: 24px;
+                cursor: pointer;
+                text-align: center;
+                margin-bottom: 10px;
+                transition: 0.8s;
+                &:hover {
+                    border-color: $color-primary;
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+}
 </style>

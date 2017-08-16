@@ -76,7 +76,7 @@ export default {
               <span>
                 Customized<br>Pattern
               </span>
-              <img class="customized__inner--img" src="~assets/img/logo/flower_diy.png" alt="花型定制">
+              <img class="customized__inner--img" v-lazy="'/img/logo/flower_diy.png'" alt="花型定制">
             </div>
           </div>
           <div class="customized" @click="handleDIYClothes">
@@ -85,7 +85,7 @@ export default {
             <span>
               Customized<br>Clothes
             </span>
-            <img class="customized__inner--img" src="~assets/img/logo/design_diy.png" alt="版衣定制">
+            <img class="customized__inner--img" v-lazy="'/img/logo/design_diy.png'"  alt="版衣定制">
           </div>
         </div>
         </div>
@@ -117,14 +117,45 @@ export default {
     <!-- ======== -->
     <index-title title="供应求购" subTitle="Supply Purchase"></index-title>
     <el-tabs v-model="Tab.supply" @tab-click="handleClick">
-      <el-tab-pane label="供应" name="0">供应</el-tab-pane>
-      <el-tab-pane label="求购" name="1">求购</el-tab-pane>
+      <el-tab-pane label="供应" name="0">
+        <el-row>
+          <el-col :span="7">
+            <img v-lazy="'/img/poster/supply.jpg'" alt="供应">
+          </el-col>
+          <el-col :span="17">
+          </el-col>
+        </el-row>
+      </el-tab-pane>
+      <el-tab-pane label="求购" name="1">
+        <el-row>
+          <el-col :span="7">
+            <img v-lazy="'/img/poster/purchase.jpg'" alt="供应">
+          </el-col>
+          <el-col :span="17">
+          </el-col>
+        </el-row>
+      </el-tab-pane>
     </el-tabs>
     <!-- ======== -->
     <!-- 版衣专区 -->
     <!-- ======== -->
     <index-title title="版衣专区" subTitle="Supply Purchase"></index-title>
+    <el-row>
+      <el-col :span="7">
+        <img v-lazy="'/img/poster/design.jpg'" alt="版衣专区">
+      </el-col>
+      <el-col :span="17">
+        <img v-lazy="'/img/poster/design.jpg'" v-for="i in 8" class="index-wrapper__supply--img">
+      </el-col>
+    </el-row>
     <index-title title="优质商家" subTitle="Supply Purchase"></index-title>
+    <el-row>
+    <el-col :span="7">
+      <img v-lazy="'/img/poster/quality.jpg'" alt="优质商家">
+    </el-col>
+    <el-col :span="17">
+    </el-col>
+  </el-row>
   </section>
 </template>
 
@@ -183,6 +214,13 @@ export default {
             transform: translateY(-50%);
             z-index: 2;
         }
+    }
+    @e supply{
+      @m img{
+        size:200px 300px;
+        padding: 5px;
+        padding-top: 0;
+      }
     }
 }
 @b advert {

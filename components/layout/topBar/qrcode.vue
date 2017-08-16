@@ -3,7 +3,7 @@
     <el-popover ref="app" placement="bottom"  width="200"  trigger="hover">
       <el-row :gutter="10" class="qrcode__item">
         <el-col :span="12">
-          <lc-image width="60" src="~@/assets/img/qrcode/app.png"></lc-image>
+          <img width="100" v-lazy="'/img/qrcode/app.png'"></img>
         </el-col>
         <el-col :span="12">
           <p class="qrcode__item--title qrcode__item">手机蕾丝控</p>
@@ -14,7 +14,7 @@
     <el-popover ref="wechat" placement="bottom"  width="200"  trigger="hover">
       <el-row :gutter="10" class="qrcode__item">
         <el-col :span="12">
-          <lc-image width="60" src="~@/assets/img/qrcode/app.png"></lc-image>
+          <img width="100" v-lazy="'/img/qrcode/app.png'"></img>
         </el-col>
         <el-col :span="12">
           <p class="qrcode__item--title qrcode__item">关注微信公众号</p>
