@@ -1,5 +1,12 @@
+@import "./var.scss";
+@import url("http://at.alicdn.com/t/font_dykqs0rfqi79zfr.css");
 html {
     overflow-x: hidden;
+    color: $color-black;
+}
+body,
+html {
+    height: 100%;
 }
 a {
     cursor: pointer;
@@ -7,7 +14,7 @@ a {
     text-decoration: none;
     color: inherit;
     &:hover {
-        color: blue;
+        color: $color-grey-10;
     }
 }
 button,
@@ -68,19 +75,32 @@ em {
 // detail - supply/buy/flower
 .detailBox {
     .detailBrder {
-        margin: 15px 0;
+        margin: 12px 0;
+        width: 100%;
+        border-bottom: 1px dashed $color-grey-4;
+    }
+    .detailBrder1 {
+        margin: 8px 0;
         width: 100%;
         border-bottom: 1px dashed $color-grey-4;
     }
     &__l {
         margin-right: 15px;
-        width: 462px;
+//      width: 462px;
         .bigImg {
             box-sizing: border-box;
             width: 460px;
             height: 460px;
             border: 1px solid $color-grey-5;
             cursor: pointer;
+            img {
+                width: 100%;
+            }
+        }
+        // bigImg2 supply/buy
+        .bigImg2 {
+            width: 420px;
+            height: 420px;
             img {
                 width: 100%;
             }
@@ -97,9 +117,10 @@ em {
             }
         }
         .collection {
+            margin: 20px 0;
             text-align: center;
             span {
-                font-size: $font-size--sub-content;
+                font-size: 13px;
                 color: $color-grey-9;
                 cursor: pointer;
             }
@@ -118,14 +139,20 @@ em {
             font-weight: bold;
             color: $color-black;
         }
+        h4 {
+            margin: 10px 0;
+            line-height: 1.8;
+            font-size: 15px;
+            color: $color-black;
+        }
         .detailInfo {
             p {
                 color: $color-black;
-                font-size: $font-size--content;
+                font-size: 14px;
                 line-height: 36px;
                 .title {
                     display: inline-block;
-                    width: 58px;
+                    min-width: 58px;
                     color: $color-grey-7;
                 }
             }
@@ -156,4 +183,12 @@ em {
             }
         }
     }
+    &__r1 {
+        width: 320px;
+        margin-left: 10px;
+    }
+}
+.iconfont {
+    padding: 0 4px;
+    font-size: inherit;
 }

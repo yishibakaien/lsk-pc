@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # dependencies
 node_modules
 
@@ -9,3 +10,16 @@ npm-debug.log
 
 # Nuxt generate
 dist
+=======
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+>>>>>>> 5ad032fee8e25de0eeb06703ac3e729486074978

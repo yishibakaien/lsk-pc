@@ -1,12 +1,11 @@
 <template>
-	<div>
-		<top-bar></top-bar>
-		<nuxt/>
-		<footer-bar></footer-bar>
-	</div>
+  <div>
+  <top-bar></top-bar>
+  <nuxt/>
+  <footer-bar></footer-bar>
+</div>
 </template>
 <script>
-
   import TopBar from '@/components/layout/TopBar'
   import FooterBar from '@/components/layout/FooterBar'
   export default {
@@ -17,7 +16,6 @@
   }
 </script>
 <style>
-	/* RESET CSS */
-	
-	@reset-global pc;
+/* RESET CSS */
+@reset-global pc;
 </style>

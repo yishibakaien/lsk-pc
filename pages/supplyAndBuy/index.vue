@@ -35,6 +35,11 @@
 			lsBuy,
 			lsSupply
 		},
+		mounted() {
+			if (this.$route.query.type) {
+				this.activeName = this.$route.query.type;
+			}
+		},
 		methods: {
 			releaseSupply() {
 				alert('发布供应');

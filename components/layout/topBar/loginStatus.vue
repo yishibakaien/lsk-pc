@@ -20,8 +20,8 @@ export default {
      @e menu{
         a {
             padding: 0 10px;
-            &:last-child{
-              border-left: 1px solid
+            &:last-child {
+                border-left: 1px solid $color-grey-4;
             }
         }
     }

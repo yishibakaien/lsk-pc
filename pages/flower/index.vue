@@ -1,6 +1,7 @@
 <template>
 	<section>
-		<!--<header-bar></header-bar>-->
+		<header-bar></header-bar>
+		<lc-nav></lc-nav>
 		<div class="wrap flowerDetail">
 			<div class="flowerDetail__breadcrumb">
 				<el-breadcrumb separator=">" class="flowerDetail__breadcrumb--main">
@@ -31,14 +32,13 @@
 			</div>
 			<div class="flowerDetail__content">
 				<el-col :span="4" v-for="(o, index) in 25" :key="o">
-					<el-card :body-style="{ padding: '0px' }">
-						<img src="~static/image/qrcode/app.png" style="width: 100%;">
+					<lc-flower-card :imgs="imgGroup">
 						<div class="flowerDetail__content--cardInfo">
 							<p class="price"><em>¥</em>&nbsp;<span>75.00</span>/码</p>
 							<p class="code">#2006889</p>
 							<img class="logo" src="~static/image/logo/lace.png" />
 						</div>
-					</el-card>
+					</lc-flower-card>
 				</el-col>
 			</div>
 		</div>
@@ -52,11 +52,19 @@
 		stock: [{ value: 'all', name: '全部' }, { value: '1', name: '需要开机' }, { value: '2', name: '有库存' }],
 		region: [{ value: 'all', name: '全部' }, { value: '1', name: '广州' }, { value: '2', name: '深圳' }, { value: '3', name: '汕头' }, { value: '4', name: '长乐' }, { value: '5', name: '柯桥' }, { value: '6', name: '其他' }]
 	}
+	let imgs = ['http://image.tswq.wang/product/ios-f68465f09df549cda468aa6941137efb.jpg',
+	'http://image.tswq.wang/product/ios-867b928d34fe4e7a974f5e1ed7fadf2b.jpg',
+	'http://image.tswq.wang/product/1502858132869',
+	'http://image.tswq.wang/product/ios-84dad6e122bd4d7b80940c14e07dba9f.jpg',
+	'http://image.tswq.wang/product/1502858132869'];
 	import HeaderBar from '@/components/layout/HeaderBar';
+	import nav from '@/components/layout/Nav';
+	import lcFlowerCard from '@/components/layout/common/lcFlowerCard';
 	export default {
 		data() {
 			return {
 				screenData: data,
+				imgGroup: imgs,
 				filter: {
 					fabric: 'all',
 					stock: 'all',
@@ -65,7 +73,9 @@
 			};
 		},
 		components: {
-			HeaderBar
+			HeaderBar,
+			lcFlowerCard,
+			'lcNav': nav
 		},
 		methods: {
 			handleFabric() {

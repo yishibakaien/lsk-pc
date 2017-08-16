@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # STATIC
 
 This directory contains your static files.
@@ -9,3 +10,16 @@ More information about the usage of this directory in the documentation:
 https://nuxtjs.org/guide/assets#static
 
 **This directory is not required, you can delete it if you don't want to use it.**
+=======
+# STATIC
+
+This directory contains your static files.
+Each file inside this directory is mapped to /.
+
+Example: /static/robots.txt is mapped as /robots.txt.
+
+More information about the usage of this directory in the documentation:
+https://nuxtjs.org/guide/assets#static
+
+**This directory is not required, you can delete it if you don't want to use it.**
+>>>>>>> 5ad032fee8e25de0eeb06703ac3e729486074978

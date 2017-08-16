@@ -1,8 +1,8 @@
 <template lang="html">
-  <section>
+  <section class="home">
     <header-bar></header-bar>
     <nav-item>
-      <span class="home__nav--phone">4008-013357</span>
+      <span class="home__nav--phone"><i class="iconfont icon-tuoyuan1kaobei3"></i>4008-013357</span>
     </nav-item>
     <div class="home__main">
       <router-view></router-view>
@@ -21,12 +21,17 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 @b home{
+  position: relative;
   @e nav{
     @m phone{
       position: absolute;
       right: 10px;
+      color:$color-white;
+      font-size: $font-size-5;
+      font-weight: 600;
+      padding-left: 14px;
     }
   }
   @e main {
@@ -34,6 +39,7 @@ export default {
     max-width: 1200px;
     margin: 0 auto;
     padding: 10px 16px;
+    min-height: 350px;
   }
 }
 </style>

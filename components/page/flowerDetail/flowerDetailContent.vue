@@ -44,8 +44,10 @@
 						</div>
 						<div class="clearfix"></div>
 					</p>
-					<div class="btn-group">
-						
+					<div class="btnGroup">
+						<el-button>我要试衣</el-button>
+						<el-button class="btn-bor">立即购买</el-button>
+						<el-button type="primary">加入购物车</el-button>
 					</div>
 				</div>
 			</div>
@@ -74,8 +76,8 @@
 		margin-top: 30px;
 		@utils-clearfix;
 	}
-	/* radio-style */
 	
+	/* radio-style */
 	.orderType {
 		font-size: 18px;
 		border-radius: 0;
@@ -92,10 +94,26 @@
 		.el-radio-button__orig-radio:checked+.el-radio-button__inner {
 			color: $color-primary;
 			background: rgba(212, 0, 115, .05);
-			border: 1px solid $color-primary;
 			background-image: url(~static/image/icon/xuanzhong.png);
 			background-repeat: no-repeat;
 			background-position: bottom right;
+		}
+	}
+	/* btn */
+	.btnGroup {
+		margin-top: 55px;
+		.el-button {
+			width: 160px;
+			height: 40px;
+			color: $color-primary;
+			font-size: $font-size-4;
+			font-weight: 600;
+		}
+		.btn-bor {
+			border: 1px solid $color-primary;
+		}
+		.el-button--primary {
+			color: #fff;
 		}
 	}
 </style>

@@ -1,12 +1,6 @@
 // **********
 // 需要用的颜色
 // **********
-$color-primary:#D40073;
-$color-secondary:rgba(212,0,115,0.10);
-$color-danger:#ff4949;
-$color-warning:#FF8400;
-$color-white:#fff;
-$color-black:#333333;
 // 灰 色
 $color-grey-1:#F9F9F9;
 $color-grey-2:#F5F5F5;
@@ -18,22 +12,25 @@ $color-grey-8:#BBBBBB;
 $color-grey-7:#999999;
 $color-grey-9:#666666;
 $color-grey-10:#3F3F3F;
+
+$color-primary:#D40073;
+$color-light-primary:rgba(212,0,115,0.10);
+$color-extra-primary:#A6005A;
+$color-danger:#ff4949;
+$color-warning:#FF8400;
+$color-info:#4C93FD;
+$color-white:#fff;
+$color-extra-white:$color-grey-1;
+$color-black:#333333;
 // **********
 // 字 体 大 小
 // **********
 $font-size-base: 14px;
-$font-size--content: $font-size-base; //14px
-$font-size--sub-content: ($font-size-base - 1px); //13px
-$font-size--tip: ($font-size-base - 2px); //12px
-$font-size--sub-title: ($font-size-base + 2px); //16px
-$font-size--title: ($font-size-base + 6px); //20px
-
-/*解决报错用 要删掉*/
-$font-size-1: 12px;
-$font-size-4: 12px;
-$font-size-5: 12px;
-////////
-
+$font-size-1: ($font-size-base - 2px); // 12px
+$font-size-2: ($font-size-base - 1px); // 13px
+$font-size-3: $font-size-base;         // 14px
+$font-size-4: ($font-size-base + 2px); // 16px
+$font-size-5: ($font-size-base + 6px); // 20px
 // **********
 //   高  度
 // **********
@@ -42,12 +39,12 @@ $item--height: 40px;
 //  图 片 高 度
 // ***********
 $pic-height-base:40px;
-$pic-height-1:$pic-height-base; // 40px
-$pic-height-2:calc($pic-height-1 + 20px); // 60px
-$pic-height-3:calc($pic-height-1 + 40px); // 80px
-$pic-height-4:calc($pic-height-1 + 50px); // 90px
-$pic-height-5:calc($pic-height-1 * 5); // 200px
-$pic-height-6:calc($pic-height-1 * 10 + 60px); //460px
+$pic-height-1:$pic-height-base;                  // 40px
+$pic-height-2:calc($pic-height-1 + 20px);        // 60px
+$pic-height-3:calc($pic-height-1 + 40px);        // 80px
+$pic-height-4:calc($pic-height-1 + 50px);        // 90px
+$pic-height-5:calc($pic-height-1 * 5);           // 200px
+$pic-height-6:calc($pic-height-1 * 10 + 60px);   // 460px
 
 // **********
 //   阴  影

@@ -7,9 +7,8 @@
 					<div class="breadcrumb fl">
 						<el-breadcrumb separator=">">
 							<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-							<el-breadcrumb-item :to="{ path: '/flower' }">花型列表</el-breadcrumb-item>
-							<el-breadcrumb-item>花型详情</el-breadcrumb-item>
-							<el-breadcrumb-item>{{bianhao || '花型编号'}}</el-breadcrumb-item>
+							<el-breadcrumb-item :to="{ path: '/flower' }">花型展厅</el-breadcrumb-item>
+							<el-breadcrumb-item>花型详情-{{bianhao || '花型编号'}}</el-breadcrumb-item>
 						</el-breadcrumb>
 					</div>
 					<div class="businessInfo fr">
@@ -35,6 +34,8 @@
 			</div>
 			<div class="flowerDetail__wrap">
 				<flower-detail-content></flower-detail-content>
+				<flower-detail-attribute></flower-detail-attribute>
+				<flower-detail-new></flower-detail-new>
 			</div>
 		</div>
 	</section>
@@ -43,13 +44,17 @@
 <script>
 	import HeaderBar from '@/components/layout/HeaderBar';
 	import flowerDetailContent from '@/components/page/flowerDetail/flowerDetailContent';
+	import flowerDetailAttribute from '@/components/page/flowerDetail/flowerDetailAttribute';
+	import flowerDetailNew from '@/components/page/flowerDetail/flowerDetailNew';
 	export default {
 		validate({ params }) {
 			return !isNaN(+params.id);
 		},
 		components: {
 			HeaderBar,
-			flowerDetailContent
+			flowerDetailContent,
+			flowerDetailAttribute,
+			flowerDetailNew
 		},
 		data() {
 			return {
