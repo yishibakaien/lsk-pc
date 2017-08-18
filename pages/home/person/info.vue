@@ -107,14 +107,15 @@ export default {
         <el-form-item label="经营范围" prop="companyBussiness">
           <el-input v-model="infoForm.companyBussiness"></el-input>
         </el-form-item>
-        <el-button type="primary" class="info__save--button">保存</el-button>
+        <el-button type="primary" class="info__save--button" @click="handleSave('infoForm')">保存</el-button>
       </el-form>
     </section>
   </person-section>
 </template>
 
 <script>
-import personSection from '@/components/page/person/personSection'
+import {mapState} from 'vuex'
+import personSection from '@/components/frame/section/personSection'
 export default {
   data() {
     return {
@@ -127,17 +128,29 @@ export default {
       rules: {
         userName: [{
           required: true,
+          trigger:'blur',
           message: '请输入联系人姓名'
         }],
         phone: [{
           required: true,
+          trigger:'blur',
           message: '请输入联系人电话'
         }]
       }
     }
   },
+  created() {
+    this.infoForm = this.userInfo
+  },
+  ...mapState({
+      personNav: state => state.common.personNav,
+      userInfo: state => state.user.userInfo
+    }),
   components: {
     personSection
+  },
+  methods: {
+    handleSave(formName){}
   }
 }
 </script>

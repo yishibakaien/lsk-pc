@@ -1,6 +1,7 @@
 <template lang="html">
   <section class="home">
-    <header-bar></header-bar>
+    <header-bar>
+    </header-bar>
     <nav-item>
       <span class="home__nav--phone"><i class="iconfont icon-tuoyuan1kaobei3"></i>4008-013357</span>
     </nav-item>
@@ -11,8 +12,10 @@
 </template>
 
 <script>
+import {loginOut} from '@/services/user'
 import NavItem from '@/components/layout/Nav'
 import HeaderBar from '@/components/layout/HeaderBar'
+import {mapGetters} from 'vuex'
 export default {
   components: {
     HeaderBar,

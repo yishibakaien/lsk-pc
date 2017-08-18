@@ -202,34 +202,37 @@ export default {
     <!-- ========= -->
     <!-- **对话框** -->
     <!-- ========= -->
+    addressForm:{
+
+    }
     <el-dialog title="新增地址" :visible.sync="Dialog.address" size="small" :before-close="handleCloseAdd">
-      <el-form :model="addForm" :rules="rules" ref="addForm" label-width="100px">
+      <el-form :model="addressForm" :rules="rules" ref="addressForm" label-width="100px">
         <el-form-item label="所在地区" prop="originPwd">
-          <el-input v-model="addForm.originPwd"></el-input>
+          
         </el-form-item>
         <el-form-item label="详细地址" prop="address">
-          <el-input v-model="addForm.address" type="textarea"></el-input>
+          <el-input v-model="addressForm.address" type="textarea"></el-input>
         </el-form-item>
         <el-row :gutter="12">
           <el-col :span="12">
-            <el-form-item label="收货人" prop="address">
-              <el-input v-model="addForm.userName"></el-input>
+            <el-form-item label="收货人" prop="name">
+              <el-input v-model="addressForm.name"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="手机号码" prop="address">
-              <el-input v-model="addForm.phone" ></el-input>
+            <el-form-item label="手机号码" prop="phone">
+              <el-input v-model="addressForm.phone" ></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="12">
           <el-col :span="12">
-            <el-form-item prop="address">
-               <el-checkbox v-model="addForm.checked">设为默认</el-checkbox>
+            <el-form-item prop="address" prop="is_def">
+               <el-checkbox v-model="addressForm.is_def">设为默认</el-checkbox>
             </el-form-item>
           </el-col>
           <el-col :span="12" class="address__save">
-            <el-button type="primary">确定</el-button>
+            <el-button type="primary" @click="handleAddAddress('addressForm')">确定</el-button>
             <el-button>取消</el-button>
           </el-col>
         </el-row>
@@ -239,37 +242,12 @@ export default {
 </template>
 
 <script>
+import {deleteConsignee,addConsignee,editorConsignee,getConsigneeList,getConsignee,setConsigneeDefault} from '@/services/order'
 export default {
   data() {
     return {
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }],
-      addForm: {
-        confirmPwd: '',
-        checked: false,
-        phone: '',
-        userName: '',
-        address: '',
-        originPwd: ''
-      },
-      rules: {},
-      Dialog: {
-        address: false
+      Dialog:{
+        address:false
       }
     }
   },

@@ -4,12 +4,12 @@
   <!-- POPPER -->
   <!-- ====== -->
   <el-popover ref="personalSetting" placement="bottom" trigger="hover">
-    <router-link :key="item.path" :to="handleGoTo(item.path)" v-for="item in personNav.order" tag="a" class="header__menu--item">
+    <router-link :key="item.path" :to="handleGoTo(item.path)" v-for="item in common.personNav.order" tag="a" class="header__menu--item">
       {{item.name}}
     </router-link>
   </el-popover>
   <el-popover ref="myCollection" placement="bottom" trigger="hover">
-    <router-link :key="item.path" :to="handleGoTo(item.path)" v-for="item in personNav.collection" tag="a" class="header__menu--item">
+    <router-link :key="item.path" :to="handleGoTo(item.path)" v-for="item in common.personNav.collection" tag="a" class="header__menu--item">
       {{item.name}}
     </router-link>
   </el-popover>
@@ -39,7 +39,7 @@ import PersonalMenuData from '@/utils/consts/personal-menu.json'
 import QrcodeItem from './topBar/qrcode';
 import LoginStatus from './topBar/loginStatus'
 import {
-  mapGetters
+  mapState
 } from 'vuex'
 export default {
   methods: {
@@ -48,7 +48,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['personNav'])
+    ...mapState(['common'])
   },
   components: {
     QrcodeItem,
