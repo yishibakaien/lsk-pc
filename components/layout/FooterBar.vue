@@ -27,7 +27,7 @@ export default {
 @b footer {
     text-align: center;
     @e content {
-        background: url('~assets/img/material/lace.png') repeat no-repeat;
+        background: url('~static/img/material/lace.png') repeat no-repeat;
         background-color: $color-primary;
         height: 160px;
         display: flex;

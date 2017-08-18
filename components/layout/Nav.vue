@@ -43,7 +43,7 @@ export default {
     right: 0;
     height: 14px;
     width: 100%;
-    background: url('~assets/img/material/lace.png') repeat no-repeat;
+    background: url('~static/img/material/lace.png') repeat no-repeat;
   }
   @e item{
     display: inline-block;
