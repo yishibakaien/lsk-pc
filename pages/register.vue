@@ -18,7 +18,7 @@
         </el-form-item>
         <el-form-item label="验证码" prop="smsCode">
           <el-input :maxLength="6" v-model="registerForm.smsCode" class="register__form--verifyCode"></el-input>
-          <timer-btn @click="handleGetCode">获取短信验证码</timer-btn>
+          <timer-btn @click="handleGetCode" :disabled="isDisabledSms">获取短信验证码</timer-btn>
         </el-form-item>
         <el-form-item label="密码" prop="userPWD">
           <el-input type="password" v-model="registerForm.userPWD" placeholder="请输入您的登录密码" :maxLength="16"></el-input>
@@ -32,7 +32,7 @@
         </el-form-item>
         <el-form-item label="联系人" prop="phone">
           <el-input v-model="registerForm.phone" placeholder="请输入联系人" :maxLength="20"></el-input>
-        </el-form-item>
+        </el-form-item> 
         <el-form-item prop="checked">
           <el-checkbox v-model="registerForm.checked">我已阅读并同意</el-checkbox>
         </el-form-item>
@@ -89,6 +89,11 @@ export default {
           ],
       }
     }
+  },
+  computed: {
+    isDisabledSms() {
+      return this.registerForm.phone.length === 0
+     }
   },
   components: {
     TimerBtn

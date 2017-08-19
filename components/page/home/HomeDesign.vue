@@ -48,7 +48,8 @@ export default {
 @b index-wrapper {
      @e supply{
         @m img {
-            padding: 0 5px 5px;
+          padding: 0 5px 5px;
+          border: 1px solid $color-grey-1;
         }
     }
 }

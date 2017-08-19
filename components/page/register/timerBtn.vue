@@ -1,6 +1,6 @@
 <template lang="html">
 
-  <el-button type="primary" :disabled="disabled" @click="handleRun">{{text}}</el-button>
+  <el-button type="primary" :disabled="isDisabled" @click="handleRun">{{text}}</el-button>
 </template>
 
 <script>
@@ -14,14 +14,18 @@ export default {
 		second: {
 			type: Number,
 			default: 10
+		},
+		disabled: {
+			type: Boolean,
+			default: false
 		}
 	},
 	computed: {
 		text() {
 			return this.time > 0 ? this.time + 's 后重获取' : '获取验证码'
 		},
-		disabled() {
-			return this.time > 0
+		isDisabled() {
+			return this.time > 0 ||  this.disabled
 		}
 	},
 	beforeDestroy() {

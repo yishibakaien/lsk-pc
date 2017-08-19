@@ -13,3 +13,7 @@ export const getVerifyCode = param => axios.post(`/front/user/getVerifyCode`, pa
 export const getRegSMSCode = param => axios.post(`/front/user/getRegSMSCode`, param)
 // 找回密码
 export const findPassWd = param => axios.post(`/front/user/findPassWd`, param)
+// 修改用户密码
+export const restPasswd = param => axios.post(`/user/restPasswd`, param)
+// 校验密码
+export const checkPasswd = param => axios.post(`/user/checkPasswd`, param)

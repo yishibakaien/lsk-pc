@@ -1,7 +1,8 @@
 <template lang="html">
   <section class="shopcar">
     <div class="shopcar__header">
-      <div class="shopcar__header--button" :class="{'is-hiddenBorder':isShow}" @mouseover="isShow=true" @mouseout="isShow=false">
+      <div class="shopcar__header--button" :class="{'is-hiddenBorder':isShow}" 
+      @mouseover="isShow=true" @mouseout="isShow=false">
         <p class="shopcar__header--badge">
           <i class="iconfont icon-gouwuchekong_"></i>
           <span class="shopcar__header--inner">我的购物车</span>
@@ -10,14 +11,13 @@
       </div>
     </div>
     <div class="shopcar__content" v-show="isShow" :class="{'is-hiddenBorder':isShow}" :style="{'top':getContentTop}">
-      <span>dasdasjldkl<br></span>
-      <span>dasdasjldkl<br></span>
-      <span>dasdasjldkl<br></span>
-      <span>dasdasjldkl<br></span>
-      <span>dasdasjldkl<br></span>
-      <span>dasdasjldkl<br></span>
-      <span>dasdasjldkl<br></span>
-      <span>dasdasjldkl<br></span>
+      <div class="shopcar__content--empty">
+        <i class="iconfont icon-gouwuchekong_"></i>
+        <p class="shopcar__content--text">购物车还没有花型，赶紧去采购吧</p>
+      </div>
+      <div>
+        
+      </div>
     </div>
   </section>
 </template>
@@ -60,7 +60,7 @@ export default {
             cursor: pointer;
             @when hiddenBorder {
                 border-bottom-color: $color-white;
-                z-index: 2;
+                z-index: 4;
             }
         }
         @m inner {
@@ -84,10 +84,22 @@ export default {
         position: absolute;
         left: auto;
         right: 0;
+        z-index: 3;
         top: calc(var(--height) - 1px);
         background: $color-white;
         min-width: 200px;
         padding: 10px;
+        @m empty{
+          color:$color-grey-6;
+          .iconfont{
+            font-size: ($font-size-1 * 3);
+            padding-right:10px;
+            float: left;
+          }
+        }
+        @m text{
+          font-size : $font-size-2;
+        }
     }
 }
 </style>
