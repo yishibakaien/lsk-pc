@@ -45,10 +45,10 @@ export const actions = {
   /**
    * Init auth for the request.
    */
-  initAuth({ commit }, accessToken) {
-    commit('SET_TOKEN', accessToken)
-    return getUserInfo()
-      .then(response => commit('SET_USER', response.data.data))
+  async initAuth({ commit }, accessToken) {
+    await commit('SET_TOKEN', accessToken)
+    let {data} = await getUserInfo()
+    commit('SET_USER', data.data)
   }
 }
 export const getters = {

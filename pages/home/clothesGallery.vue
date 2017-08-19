@@ -7,20 +7,19 @@
       </el-breadcrumb>
     </div>
     <el-row class="clothesGallery__wrapper" :gutter="10">
-      <el-col :key="index" :span="8" v-for="(item, index) in 20" class="clothesGallery__wrapper--item">
+      <el-col :key="index" :span="8" v-for="(item, index) in Clothes.list" class="clothesGallery__wrapper--item">
         <el-card>
           <el-row :gutter="25">
               <el-col :span="14">
-                <img v-lazy="`http://element.eleme.io/static/hamburger.50e4091.png`" alt="版衣" class="clothesGallery__item--img">
+                <lc-image :src="item.clothesPic" width="220" height="329" error="/img/default/morenhuaxing.png"></lc-image>
               </el-col>
               <el-col :span="10">
                 <div class="clothesGallery__item">
-                  <p class="clothesGallery__item--title">按倒</p>
-                  <p class="clothesGallery__item--subTitle">LSK</p>
-                  <p class="clothesGallery__item--content">短款的设计，把黑色酷酷的味道压下去了一点点贴图、字母、小立领，保持高度一致，文案建议字体文案建议字数字数文案建议字数文案建议40-80个字数</p>
-                  <div class="clothesGallery__item--pic">
-                    <img v-lazy="`http://element.eleme.io/static/hamburger.50e4091.png`" alt="图案" width="65" height="65"/>
-                    <img v-lazy="`http://element.eleme.io/static/hamburger.50e4091.png`" alt="图案" width="65" height="65"/>
+                  <p class="clothesGallery__item--title">{{item.clothesName}}</p>
+                  <p class="clothesGallery__item--subTitle" v-for="subItem in item.clothesProductList">{{subItem.productNo}}</p>
+                  <p class="clothesGallery__item--content">{{item.memo}}</p>
+                  <div class="clothesGallery__item--pic" v-for="subItem in item.clothesProductList">
+                     <lc-image :src="item.productUrl" width="65" height="65"></lc-image>
                   </div>
                 </div>
               </el-col>
@@ -32,7 +31,30 @@
 </template>
 
 <script>
-export default {}
+import {getClothesList} from '@/services/clothes'
+export default {
+  data() {
+    return {
+      Clothes: {
+        list:[],
+        pageNo:1,
+        pageSize:10
+      },
+      Params: {
+        pageNo:1,
+        pageSize:12
+      }
+    }
+  },
+  async created() {
+    try {
+      let {data} = await getClothesList(this.Params)
+      this.Clothes = data.data
+    }catch(e) {
+      console.log("获取版衣列表失败")
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -70,9 +92,6 @@ export default {}
         padding: 5px;
         box-sizing: border-box;
       }
-    }
-    @m img {
-      size:220px 329px;
     }
   }
 }
