@@ -15723,15 +15723,18 @@
     width: 130px;
 }
 .el-input-number--small .el-input-number__increase, .el-input-number--small .el-input-number__decrease {
-    line-height: 30px;
+    line-height: 29px;
     width: 30px;
     font-size: 13px;
 }
 .el-input-number--small .el-input-number__decrease {
-    right: 31px;
+    left: 1px;
+    border-right: 1px solid rgb(217, 191, 191);
+    border-left: 1px solid transparent;
 }
 .el-input-number--small .el-input__inner {
-    padding-right: 70px;
+    padding-right: 35px;
+    padding-left: 38px;
 }
 @charset "UTF-8";
 :root {

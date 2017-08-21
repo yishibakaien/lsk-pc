@@ -29,7 +29,7 @@ export default {
   display: flex;
   align-items: center;
   @e logo{
-    background: url("~assets/img/logo/logo.png")no-repeat;
+    background: url("~static/img/logo/logo.png")no-repeat;
     background-size: 100%;
     background-position-y: center;
     size: 200px 56px;

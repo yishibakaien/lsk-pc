@@ -102,7 +102,7 @@ export default {
         }
         @m left {
             .logo {
-                background: url("~assets/img/logo/logo.png")no-repeat;
+                background: url("~static/img/logo/logo.png")no-repeat;
                 background-size: 100%;
                 background-position-y: center;
                 size: 200px 56px;

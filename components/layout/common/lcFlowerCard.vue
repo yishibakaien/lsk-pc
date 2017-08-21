@@ -4,11 +4,11 @@
 			<img :src="imgMainSrc"/>
 		</div>
 		<div class="flowerCard__imgGroup clearfix">
-			<span class="prev fl" :class="{'ban': start === 0}" @click="handlePrev" v-if="imgs.length > 4"><</span>
+			<span class="prev fl" :class="{'ban': start === 0}" @click.stop="handlePrev" v-if="imgs.length > 4"><</span>
 			<div class="imgs fl" :class="{'pad': imgs.length <= 4}">
-				<img v-for="item in imgsData" :src="item" @click="handleImg(item)"/>
+				<img v-for="item in imgsData" :src="item" @click.stop="handleImg(item)"/>
 			</div>
-			<span class="next fl" :class="{'ban': end === imgs.length}" @click="handleNext" v-if="imgs.length > 4">></span>
+			<span class="next fl" :class="{'ban': end === imgs.length}" @click.stop="handleNext" v-if="imgs.length > 4">></span>
 		</div>
 		<div class="flowerCard__info">
 			<slot></slot>
