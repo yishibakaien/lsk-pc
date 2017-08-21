@@ -62,105 +62,20 @@ export default {
 =======
 <template lang="html">
   <section class="index-wrapper">
-      <!-- ======== -->
-      <!-- Carousel -->
-      <!-- ======== -->
-      <el-carousel height="600px" class="index-wrapper__carousel">
-        <el-carousel-item v-for="item in 4" :key="item">
-          <h3>{{ item }}</h3>
-        </el-carousel-item>
-        <div class="index-wrapper__carousel--button">
-          <div class="customized">
-            <div class="customized__inner" @click="handleDIYFolwer">
-              <p class="customized__inner--title">花型定制</p>
-              <span>
-                Customized<br>Pattern
-              </span>
-              <img class="customized__inner--img" v-lazy="'/img/logo/flower_diy.png'" alt="花型定制">
-            </div>
-          </div>
-          <div class="customized" @click="handleDIYClothes">
-            <div class="customized__inner">
-            <p class="customized__inner--title">版衣定制</p>
-            <span>
-              Customized<br>Clothes
-            </span>
-            <img class="customized__inner--img" v-lazy="'/img/logo/design_diy.png'"  alt="版衣定制">
-          </div>
-        </div>
-        </div>
-      </el-carousel>
-    <!-- ======== -->
-    <!-- 最新花型 -->
-    <!-- ======== -->
-    <index-title title="最新花型" subTitle="Latest flower pattern"></index-title>
-    <el-tabs v-model="Tab.newFlower" @tab-click="handleClick">
-      <el-tab-pane label="全部" name="0">全部</el-tab-pane>
-      <el-tab-pane label="面料" name="1">面料</el-tab-pane>
-      <el-tab-pane label="大边" name="2">大边</el-tab-pane>
-      <el-tab-pane label="小边" name="3">小边</el-tab-pane>
-      <el-tab-pane label="睫毛" name="4">睫毛</el-tab-pane>
-    </el-tabs>
-    <!-- 广告位1 -->
-    <lc-image width="1200" height="90" class="index-wrapper__advert"></lc-image>
-    <!-- ======== -->
-    <!-- 优质商家&&最新入驻 -->
-    <!-- ======== -->
-    <el-row :gutter="10">
-      <!-- 优质商家 -->
-      <el-col :span="12"></el-col>
-      <!--最新入驻  -->
-      <el-col :span="12"></el-col>
-    </el-row>
-    <!-- ======== -->
-    <!-- 供应求购 -->
-    <!-- ======== -->
-    <index-title title="供应求购" subTitle="Supply Purchase"></index-title>
-    <el-tabs v-model="Tab.supply" @tab-click="handleClick">
-      <el-tab-pane label="供应" name="0">
-        <el-row>
-          <el-col :span="7">
-            <img v-lazy="'/img/poster/supply.jpg'" alt="供应">
-          </el-col>
-          <el-col :span="17">
-          </el-col>
-        </el-row>
-      </el-tab-pane>
-      <el-tab-pane label="求购" name="1">
-        <el-row>
-          <el-col :span="7">
-            <img v-lazy="'/img/poster/purchase.jpg'" alt="供应">
-          </el-col>
-          <el-col :span="17">
-          </el-col>
-        </el-row>
-      </el-tab-pane>
-    </el-tabs>
-    <!-- ======== -->
-    <!-- 版衣专区 -->
-    <!-- ======== -->
-    <index-title title="版衣专区" subTitle="Supply Purchase"></index-title>
-    <el-row>
-      <el-col :span="7">
-        <img v-lazy="'/img/poster/design.jpg'" alt="版衣专区">
-      </el-col>
-      <el-col :span="17">
-        <img v-lazy="'/img/poster/design.jpg'" v-for="i in 8" class="index-wrapper__supply--img">
-      </el-col>
-    </el-row>
-    <index-title title="优质商家" subTitle="Supply Purchase"></index-title>
-    <el-row>
-    <el-col :span="7">
-      <img v-lazy="'/img/poster/quality.jpg'" alt="优质商家">
-    </el-col>
-    <el-col :span="17">
-    </el-col>
-  </el-row>
+    <home-carousel></home-carousel>
+    <home-latest></home-latest>
+    <home-demand></home-demand>
+    <home-design></home-design>
+    <home-best></home-best>
   </section>
 </template>
 
 <script>
-import IndexTitle from '@/components/page/home/IndexSection';
+import HomeBest from '@/components/page/home/HomeBest'
+import HomeCarousel from '@/components/page/home/HomeCarousel'
+import HomeDemand from '@/components/page/home/HomeDemand'
+import HomeDesign from '@/components/page/home/HomeDesign'
+import HomeLatest from '@/components/page/home/HomeLatest'
 export default {
   data() {
     return {
@@ -171,28 +86,20 @@ export default {
     }
   },
   methods: {
-    handleClick() {},
-    handleDIYFolwer() {
-    },
-    handleDIYClothes() {
-      this.$router.push('/home/clothes/custom')
-    }
+
   },
   components: {
-    IndexTitle
+    HomeBest,
+    HomeCarousel,
+    HomeDemand,
+    HomeDesign,
+    HomeLatest
   }
 }
 </script>
 
 <style lang="scss" scoped>
 :root {
-    // 轮播
-    --carousel-top: 124px;
-    --carousel--button-right: 20%;
-    // 定制按钮
-    --customized-width: 292px;
-    --customized-height: 230px;
-    --customized-border-width: 16px;
     // 广告位
     --advert-padding: 40px;
     // 内容区
@@ -200,55 +107,9 @@ export default {
 }
 @b index-wrapper {
     padding-top: var(--padding-top);
-    @e carousel {
-        background: $color-grey-8;
-        position: relative;
-        position: absolute;
-        top: var(--carousel-top);
-        left: 0;
-        right: 0;
-        @m button {
-            position: absolute;
-            right: var(--carousel--button-right);
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 2;
-        }
-    }
-    @e supply{
-      @m img{
-        size:200px 300px;
-        padding: 5px;
-        padding-top: 0;
-      }
-    }
 }
 @b advert {
     padding: var(--advert-padding);
-}
-@b customized {
-    size: var(--customized-width) var(--customized-height);
-    border: var(--customized-border-width) solid $color-grey-1;
-    padding: calc(var(--customized-border-width) - 4px);
-    background: transparent;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    @e inner {
-        background: $color-white;
-        height: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-        position: relative;
-        @m title {
-            color: $color-primary;
-            font-weight: 700;
-        }
-        @m img {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-        }
-    }
 }
 </style>
 <style lang="scss">

@@ -4,7 +4,11 @@
       <div class="person__menu">
         <div class="person__avatar">
           <div class="person__avatar--inner">
+<<<<<<< HEAD
             <lc-image width="120" :error="require('@/static/img/default/touxiang.jpg')" class="person__avatar--img"></lc-image>
+=======
+            <lc-image width="100" class="person__avatar--img" :src="userInfo.userHeadIcon"></lc-image>
+>>>>>>> bfba8fd22f1372b8b55c85cd53ed5fb697522d2d
             <i class="el-icon-picture person__avatar--photo"></i>
           </div>
           <p>用户账号</p>
@@ -28,11 +32,12 @@
 
 <script>
 import {
-  mapGetters
+  mapState
 } from 'vuex'
 export default {
   fetch({
     route,
+    store,
     redirect
   }) {
     if (route.name === 'home-person') {
@@ -40,7 +45,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['personNav']),
+    ...mapState({
+      personNav: state => state.common.personNav,
+      userInfo: state => state.user.userInfo
+    }),
     getNav() {
       if (this.personNav) {
         return Object.keys(this.personNav)
@@ -86,13 +94,13 @@ export default {
             display: inline-block;
         }
         @m img {
-            circle: 50px #fff;
+            border-radius: 50%;
             margin-bottom: 10px;
         }
         @m photo {
             position: absolute;
-            bottom: 10px;
-            right: 4px;
+            bottom: 20px;
+            right: 10px;
             font-size: 18px;
         }
     }

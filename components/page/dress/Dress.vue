@@ -10,7 +10,7 @@
               <el-button type="primary" @click="handleSavePic" :disabled="!Pic.uploadPic">保存图片</el-button>
             </div>
           </div>
-            <img v-lazy="Pic.origin" crossOrigin="anonymous" ref="picOrigin" class="dress-wrapper--img" :style="{'background-image':`url(${Pic.uploadPic})`,'background-size':`${ratio/4}%`}">
+            <img :src="Pic.origin" crossOrigin="anonymous" ref="picOrigin" class="dress-wrapper--img" :style="{'background-image':`url(${Pic.uploadPic})`,'background-size':`${ratio/4}%`}">
         </el-card>
       </el-col>
       <el-col :span="8">
@@ -80,9 +80,6 @@ export default {
       }
     };
   },
-  created() {
-    this.Pic.activeIndex = 0;
-  },
   // props: ['chooseItem'],
   mounted() {
     // 默认取第一张
@@ -103,8 +100,10 @@ export default {
   watch: {
     Pic: {
       handler(val) {
+        console.log(val);
         val.origin = MODEL_ORIGIN_DOMAIN + this.MODELS[val.activeIndex];
         val.thumbnail = MODEL_THUMBNAIL_DOMAIN + this.MODELS[val.activeIndex];
+        console.log(val.origin);
       },
       deep: true
     }

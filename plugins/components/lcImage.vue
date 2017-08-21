@@ -117,7 +117,7 @@ export default {
 =======
 <template lang="html">
   <div class="lc-image" :style="getStyle" @click="handleClickImg" :class="{'is-round':shape==='round'}">
-    <img class="ls-image--img" src="～@/assets/img/qrcode/app.png" :class="{'is-disabledHover':disabledHover}">
+    <img class="ls-image--img" v-lazy="imgObj" :class="{'is-disabledHover':disabledHover}">
   </div>
 </template>
 
@@ -126,17 +126,17 @@ export default {
 // ** 用 法 **
 // **********
 // 1.正方形(400*400)图片 => 只需填width
-// <ts-image width="400"></ts-image>
+// <lc-image width="400"></lc-image>
 // 2.长方形(400*500)图片 =>
-// <ts-image width="400" height="500"></ts-image>
+// <lc-image width="400" height="500"></lc-image>
 // 3.如需自定义默认错误图片
-// <ts-image width="400" error="require('xxx.png')"></ts-image>
+// <lc-image width="400" error="require('xxx.png')"></lc-image>
 // 4.如需点击查看大图（未做）
-// <ts-image width="400" canView></ts-image>
+// <lc-image width="400" canView></lc-image>
 // 5.圆图显示
-// <ts-image width="400" shape="round"></ts-image>
+// <lc-image width="400" shape="round"></lc-image>
 import emitter from 'element-ui/lib/mixins/emitter'
-const defaultUrl = `@/assets/img/default/changjia.png`
+const defaultUrl = `/img/default/changjia.png`
 export default {
   name: 'lcImage',
   mixin: [emitter],
@@ -165,7 +165,8 @@ export default {
       default: false
     },
     src: {
-      type: String
+      type: String,
+      default: defaultUrl
     }
   },
   watch: {
