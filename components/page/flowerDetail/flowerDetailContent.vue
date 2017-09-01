@@ -26,7 +26,7 @@
 						</span>
 						<span class="priceNum" v-else>面议</span>
 					</p>
-					<p><span class="title">地址：</span><span>{{areaData}}</span></p>
+					<p v-if="obj.isShelve === 1"><span class="title">地址：</span><span>{{areaData}}</span></p>
 					<p><span class="title">类型：</span>{{obj.category | filterDict(dicTree.PRODUCT_TYPE)}}</p>
 					<p><span class="title">货型：</span>{{obj.productShape | filterDict(dicTree.PRODUCT_SHAPE)}}</p>
 					<p v-if="obj.isStock"><span class="title">库存：</span>{{obj.isStock | filterDict(filterData.isStock)}}</p>
@@ -55,9 +55,18 @@
 						<div class="clearfix"></div>
 					</p>
 					<div class="btnGroup">
-						<el-button>我要试衣</el-button>
-						<el-button class="btn-bor">立即购买</el-button>
-						<el-button type="primary">加入购物车</el-button>
+						<el-popover ref="popover1" placement="bottom" width="200" trigger="click">
+							<div class="popover">
+								<h4>{{companyObj.phone}}</h4>
+								<p>
+									老板，拨打电话时，记得说明是坐视布管的客户哦～
+								</p>
+							</div>
+						</el-popover>
+						<el-button v-if="obj.isShelve === 1">加入购物车</el-button>
+						<el-button type="primary" class="btn-bor">在线交易</el-button>
+						<el-button @click="handleGoto3DDress">我要试衣</el-button>
+						<el-button v-popover:popover1 v-if="obj.isShelve === 0">电话</el-button>
 					</div>
 				</div>
 			</div>
@@ -66,14 +75,6 @@
 </template>
 
 <script>
-	// 测试数据
-	//	let data = [{picUrl: 'http://image.tswq.wang/product/web-37c1fd4fab0d4aacbaef2b6e2b2e8a70.jpg'},
-	//	{picUrl: 'http://image.tswq.wang/product/web-7ba1636b685a4ee3a687d5a61db45bd0.jpg'},
-	//	{picUrl: 'http://image.tswq.wang/product/web-37c1fd4fab0d4aacbaef2b6e2b2e8a70.jpg'},
-	//	{picUrl: 'http://image.tswq.wang/product/web-7ba1636b685a4ee3a687d5a61db45bd0.jpg'},
-	//	{picUrl: 'http://image.tswq.wang/product/web-37c1fd4fab0d4aacbaef2b6e2b2e8a70.jpg'},
-	//	{picUrl: 'http://image.tswq.wang/product/web-7ba1636b685a4ee3a687d5a61db45bd0.jpg'},
-	//	{picUrl: 'http://image.tswq.wang/product/web-37c1fd4fab0d4aacbaef2b6e2b2e8a70.jpg'}]
 	import { mapGetters } from 'vuex';
 	import { getColorCards } from '@/services/flower';
 	import { favoriteBus, byCode } from '@/services/util';
@@ -108,9 +109,12 @@
 			obj: {
 				type: Object
 			},
-			city: ''
+			companyObj: {
+				type: Object
+			}
 		},
 		async created() {
+			console.log(this.companyObj)
 			this.isFavorite = this.obj.isFavorite;
 			try {
 				let { data } = await getColorCards({ productId: this.obj.id });
@@ -126,9 +130,9 @@
 				console.log('error', e);
 			}
 			// 获取全部省市信息
-			if(this.city) {
+			if(this.companyObj.city) {
 				try {
-					let { data } = await byCode({ areaCode: this.city });
+					let { data } = await byCode({ areaCode: this.companyObj.city });
 					console.log(data);
 					this.areaData = data.data.parentName + ' ' + data.data.areaName;
 				} catch(e) {
@@ -173,7 +177,14 @@
 				this.start++;
 				this.end++;
 				this.imgDatas = this.imgData.slice(this.start, this.end);
-			}
+			},
+			// 去3D试衣
+			handleGoto3DDress() {
+				sessionStorage['flowerUrl'] = this.productPic ? this.productPic : this.obj.defaultPicUrl;
+				this.$router.push({
+					path: `/home/threeDDress`
+				});
+			},
 		}
 	};
 </script>
@@ -228,6 +239,20 @@
 	.isFavorite {
 		i {
 			color: #666 !important;
+		}
+	}
+	/* popover*/
+	.popover {
+		padding: 15px;
+		text-align: center;
+		h4 {
+			margin-bottom: 15px;
+			color: $color-black;
+			font-size: $font-size-5;
+		}
+		p {
+			color: $color-grey-9;
+			font-size: $font-size-3;
 		}
 	}
 </style>

@@ -34,7 +34,7 @@
 				</div>
 			</div>
 			<div class="flowerDetail__wrap">
-				<flower-detail-content :obj="flowerData.data" :city="companyData.city"></flower-detail-content>
+				<flower-detail-content :obj="flowerData.data" :companyObj="companyData"></flower-detail-content>
 				<flower-detail-attribute :obj="flowerData.data"></flower-detail-attribute>
 				<flower-detail-new :companyId="flowerData.data.companyId"></flower-detail-new>
 			</div>
