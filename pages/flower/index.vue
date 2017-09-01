@@ -8,13 +8,14 @@
 					<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
 					<el-breadcrumb-item>花型展厅</el-breadcrumb-item>
 				</el-breadcrumb>
-				<span class="flowerDetail__breadcrumb--info">共 <em>19999</em> 款花型</span>
+				<span class="flowerDetail__breadcrumb--info">共 <em>{{listData.totalNum}}</em> 款花型</span>
 			</div>
 			<div class="flowerDetail__screen">
 				<div class="listScreen__box">
 					<span class="title">分类</span>
 					<el-radio-group v-model="filter.fabric" @change="handleFabric">
-						<el-radio-button :label="item.value" v-for="item in screenData.fabric" :key="item.value">{{item.name}}</el-radio-button>
+						<el-radio-button label="">全部</el-radio-button>
+						<el-radio-button :label="item.dicValue" v-for="item in dicTree.PRODUCT_TYPE" :key="item.dicValue">{{item.name}}</el-radio-button>
 					</el-radio-group>
 				</div>
 				<div class="listScreen__box">
@@ -24,22 +25,23 @@
 					</el-radio-group>
 				</div>
 				<div class="listScreen__box">
-					<span class="title">地区</span>
-					<el-radio-group v-model="filter.region" @change="handleAction">
-						<el-radio-button :label="item.value" v-for="item in screenData.region" :key="item.value">{{item.name}}</el-radio-button>
-					</el-radio-group>
+					<span class="title" style="margin-right: 15px;">地区(多选)</span>
+					<el-checkbox style="padding: 5px 10px 0 0" class="fl" v-model="areaAll">全部</el-checkbox>
+					<el-checkbox-group v-model="filter.region" @change="handleAction" style="padding-top: 5px">
+						<el-checkbox v-for="item in areaData" :label="item.value" :key="item.value">{{item.name}}</el-checkbox>
+					</el-checkbox-group>
 				</div>
 			</div>
 			<div class="flowerDetail__content">
-				<el-col :span="4" v-for="(o, index) in 25" :key="o">
-					<lc-flower-card :imgs="imgGroup">
-						<div class="flowerDetail__content--cardInfo">
-							<p class="price"><em>¥</em>&nbsp;<span>75.00</span>/码</p>
-							<p class="code">#2006889</p>
-							<img class="logo" src="~static/image/logo/lace.png" />
-						</div>
-					</lc-flower-card>
+				<el-col :span="4" v-for="(o, index) in listData.list" :key="index">
+					<div @click="goDetail(o.id)">
+						<lc-flower-card :obj="o"></lc-flower-card>
+					</div>
 				</el-col>
+			</div>
+			<div class="flowerDetail__pageBar">
+				<el-pagination layout="prev, pager, next" :current-page="params.pageNo" :page-size="params.pageSize" :total="listData.totalNum" @current-change="pageData">
+				</el-pagination>
 			</div>
 		</div>
 	</section>
@@ -48,44 +50,108 @@
 <script>
 	// 接口出来要换成字典
 	let data = {
-		fabric: [{ value: 'all', name: '全部' }, { value: '1', name: '面料' }, { value: '2', name: '大边' }, { value: '3', name: '小边' }, { value: '4', name: '睫毛' }],
-		stock: [{ value: 'all', name: '全部' }, { value: '1', name: '需要开机' }, { value: '2', name: '有库存' }],
-		region: [{ value: 'all', name: '全部' }, { value: '1', name: '广州' }, { value: '2', name: '深圳' }, { value: '3', name: '汕头' }, { value: '4', name: '长乐' }, { value: '5', name: '柯桥' }, { value: '6', name: '其他' }]
+		stock: [{ value: '', name: '全部' }, { value: '0', name: '需要开机' }, { value: '1', name: '有库存' }],
 	}
-	let imgs = ['http://image.tswq.wang/product/ios-f68465f09df549cda468aa6941137efb.jpg',
-	'http://image.tswq.wang/product/ios-867b928d34fe4e7a974f5e1ed7fadf2b.jpg',
-	'http://image.tswq.wang/product/1502858132869',
-	'http://image.tswq.wang/product/ios-84dad6e122bd4d7b80940c14e07dba9f.jpg',
-	'http://image.tswq.wang/product/1502858132869'];
 	import HeaderBar from '@/components/layout/HeaderBar';
 	import nav from '@/components/layout/Nav';
 	import lcFlowerCard from '@/components/layout/common/lcFlowerCard';
+	import { listProducts } from '@/services/flower';
+	import {getSettledLands} from '@/services/util';
+	import { mapGetters } from 'vuex';
 	export default {
+		head: {
+			title: '花型展厅'
+		},
 		data() {
 			return {
 				screenData: data,
-				imgGroup: imgs,
+				areaData: [],
+				listData: {},
+				areaAll: true,
 				filter: {
-					fabric: 'all',
-					stock: 'all',
-					region: 'all'
+					fabric: '',
+					stock: '',
+					region: []
+				},
+				params: {
+					categorys: '',
+					isStock: '',
+					pageNo: 1,
+					pageSize: 25,
+					settledLands: ''
 				}
 			};
+		},
+		watch: {
+			areaAll(val) {
+				if (val === true) {
+					this.filter.region = [];
+					this.params.settledLands = '',
+					this.params.pageNo = 1;
+					this.getListProducts();
+				}
+			}
+		},
+		computed: {
+			...mapGetters({
+				dicTree: 'dict/dicTree'
+			})
 		},
 		components: {
 			HeaderBar,
 			lcFlowerCard,
 			'lcNav': nav
 		},
+		async created() {
+			this.getListProducts();
+			try {
+				let {data} = await getSettledLands();
+				this.areaData = data.data;
+				console.log(this.areaData);
+			}catch(e) {
+				console.log('error', e);
+			}
+		},
 		methods: {
+			async getListProducts() {
+				try {
+					let { data } = await listProducts(this.params);
+					this.listData = data.data;
+					console.log(this.listData);
+				} catch(e) {
+					console.log('error', e);
+				}
+			},
 			handleFabric() {
 				console.log(this.filter.fabric);
+				this.params.categorys = this.filter.fabric;
+				this.params.pageNo = 1;
+				this.getListProducts();
 			},
 			handleSample() {
 				console.log(this.filter.stock);
+				this.params.isStock = this.filter.stock;
+				this.params.pageNo = 1;
+				this.getListProducts();
 			},
 			handleAction() {
-				console.log(this.filter.region);
+				if (this.filter.region.length > 0) {
+					this.areaAll = false;
+				}
+				this.params.settledLands = this.filter.region.join(',');
+				this.params.pageNo = 1;
+				this.getListProducts();
+			},
+			// 翻页
+			pageData(e) {
+				this.params.pageNo = e;
+				this.getListProducts();
+			},
+			// 跳转详情页
+			goDetail(id) {
+				this.$router.push({
+					path: `/flower/${id}`
+				});
 			}
 		}
 	}
@@ -125,33 +191,10 @@
 					margin-right: 0;
 				}
 			}
-			@m cardInfo {
-				position: relative;
-				padding: 6px 14px 8px;
-				.price {
-					color: rgba(0, 0, 0, .4);
-					em {
-						color: $color-primary;
-						font-size: 13px;
-						font-weight: 600;
-					}
-					span {
-						color: $color-primary;
-						font-size: 15px;
-						font-weight: 600;
-					}
-				}
-				.code {
-					font-size: 14px;
-					color: $color-black;
-				}
-				.logo {
-					width: 80px;
-					position: absolute;
-					right: 15px;
-					top: 10px;
-				}
-			}
+		}
+		@e pageBar {
+			margin: 40px auto;
+			text-align: center;
 		}
 	}
 </style>

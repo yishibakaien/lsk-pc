@@ -1,5 +1,5 @@
 @import "./var.scss";
-@import url("http://at.alicdn.com/t/font_dykqs0rfqi79zfr.css");
+@import url("http://at.alicdn.com/t/font_332385_egsubm37tzpsnhfr.css");
 html {
     overflow-x: hidden;
     color: $color-black;
@@ -54,7 +54,7 @@ em {
 .listScreen__box {
     height: 36px;
     background: #fff;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #eaeaea;
     border-bottom: 0;
     span {
         display: inline-block;
@@ -64,12 +64,12 @@ em {
         float: left;
         width: 120px;
         height: 36px;
-        background: rgb(242,242,242);
+        background: #f8f8f8;
         line-height: 36px;
         text-align: center;
     }
     &:last-child {
-        border-bottom: 1px solid #e5e5e5;
+        border-bottom: 1px solid #eaeaea;
     }
 }
 // detail - supply/buy/flower
@@ -86,7 +86,7 @@ em {
     }
     &__l {
         margin-right: 15px;
-//      width: 462px;
+        //      width: 462px;
         .bigImg {
             box-sizing: border-box;
             width: 460px;
@@ -95,6 +95,7 @@ em {
             cursor: pointer;
             img {
                 width: 100%;
+                height: 100%;
             }
         }
         // bigImg2 supply/buy
@@ -103,17 +104,48 @@ em {
             height: 420px;
             img {
                 width: 100%;
+                height: 100%;
             }
         }
         .imgGroup {
+            position: relative;
             margin: 15px 0;
+            padding-left: 20px;
             img {
                 padding-right: 15px;
-                width: 80px;
-                height: 80px;
+                width: 72px;
+                height: 72px;
+                cursor: pointer;
                 &:nth-of-type(5n) {
                     padding: 0;
                 }
+            }
+            span {
+                position: absolute;
+                width: 15px;
+                height: 75px;
+                line-height: 75px;
+                color: rgba(0,0,0,.5);
+                font-size: 32px;
+                cursor: pointer;
+                &:hover {
+                    transform: scale(1.1);
+                    transform-origin: 50% 50% 0;
+                }
+            }
+            .prev {
+                left: -16px;
+            }
+            .next {
+                top: -3px;
+                right: 6px;
+            }
+
+        }
+        .pad {
+            padding-left: 0;
+            span {
+                display: none;
             }
         }
         .collection {
@@ -174,8 +206,9 @@ em {
                 }
                 img {
                     padding-right: 5px;
-                    width: 68px;
-                    height: 68px;
+                    width: 60px;
+                    height: 60px;
+                    cursor: pointer;
                     &:nth-of-type(9n) {
                         padding: 0;
                     }

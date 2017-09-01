@@ -2,7 +2,7 @@
 	<div class="lcTitle">
 		<div class="lcTitle__title">
 			<span>{{title}}</span>
-			<nuxt-link v-if="path" :to="path">查看更多<i class="el-icon-arrow-right"></i></nuxt-link>
+			<a v-if="path" href="javascript:;" @click="handlePath">查看更多<i class="iconfont icon-more"></i></a>
 		</div>
 		<div class="lcTitle__content">
 			<slot></slot>
@@ -18,6 +18,11 @@
 			},
 			path: {
 				type: String
+			}
+		},
+		methods: {
+			handlePath() {
+				window.open(this.path);
 			}
 		}
 	};

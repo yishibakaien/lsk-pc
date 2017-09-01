@@ -17,3 +17,7 @@ export const findPassWd = param => axios.post(`/front/user/findPassWd`, param)
 export const restPasswd = param => axios.post(`/user/restPasswd`, param)
 // 校验密码
 export const checkPasswd = param => axios.post(`/user/checkPasswd`, param)
+// 获取档口or工厂信息
+export const getCompanyInfo = param => axios.get(`/company/getCompanyInfo`, {params: param})
+// 获取公司二维码 
+export const getCompanyQRcode = param => axios.get(`/company/getCompanyQRcode`, {params: param})

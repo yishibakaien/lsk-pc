@@ -243,10 +243,12 @@
     content: "\e600";
 }
 .el-icon-arrow-left:before {
-    content: "\e601";
+    /*content: "\e601";*/
+    content: "上一页";
 }
 .el-icon-arrow-right:before {
-    content: "\e602";
+    /*content: "\e602";*/
+    content: "下一页";
 }
 .el-icon-arrow-up:before {
     content: "\e603";
@@ -1679,9 +1681,9 @@
 .el-pagination span, .el-pagination button {
     display: inline-block;
     font-size: 13px;
-    min-width: 28px;
-    height: 28px;
-    line-height: 28px;
+    min-width: 35px;
+    height: 35px;
+    line-height: 35px;
     vertical-align: top;
     box-sizing: border-box;
 }
@@ -1716,7 +1718,8 @@
     border: 1px solid #F2F2F2;
     cursor: pointer;
     margin: 0;
-    color: rgb(190, 153, 151);
+    /*color: rgb(190, 153, 151);*/
+    color: #333;
 }
 .el-pagination .btn-prev .el-icon, .el-pagination .btn-next .el-icon {
     display: block;
@@ -1801,9 +1804,9 @@
     vertical-align: top;
     display: inline-block;
     font-size: 13px;
-    min-width: 28px;
-    height: 28px;
-    line-height: 28px;
+    min-width: 35px;
+    height: 35px;
+    line-height: 35px;
     cursor: pointer;
     box-sizing: border-box;
     text-align: center;
@@ -1813,7 +1816,7 @@
     border-right: 1px solid #F2F2F2;
 }
 .el-pager li.btn-quicknext, .el-pager li.btn-quickprev {
-    line-height: 28px;
+    line-height: 35px;
     color: rgb(190, 153, 151);
 }
 .el-pager li.btn-quickprev:hover {
@@ -1830,7 +1833,7 @@
     color: #D40073;
 }
 .el-pager li.active {
-    border-color: #D40073;
+    /*border-color: #D40073;*/
     background-color: #D40073;
     color: #fff;
     cursor: default;

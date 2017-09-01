@@ -8,17 +8,17 @@
 					<el-breadcrumb separator=">">
 						<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
 						<el-breadcrumb-item :to="{ path: '/supplyAndBuy', query: {type: 'buy'} }">求购列表</el-breadcrumb-item>
-						<el-breadcrumb-item>求购详情-{{bianhao || '求购单ID'}}</el-breadcrumb-item>
+						<el-breadcrumb-item>求购详情-{{buyData.data.id}}</el-breadcrumb-item>
 					</el-breadcrumb>
 				</div>
 			</div>
 			<div class="buyDetail__content clearfix">
 				<div class="fl buyDetail__content--left fl">
-					<buy-detail-content></buy-detail-content>
-					<buy-detail-list></buy-detail-list>
+					<buy-detail-content :obj="buyData.data"></buy-detail-content>
+					<buy-detail-list :obj="buyData.data"></buy-detail-list>
 				</div>
 				<div class="fr">
-					<buy-detail-business></buy-detail-business>
+					<buy-detail-business :obj="buyData.data"></buy-detail-business>
 				</div>
 			</div>
 		</div>
@@ -31,13 +31,25 @@
 	import buyDetailList from '@/components/page/buyDetail/buyDetailList';
 	import HeaderBar from '@/components/layout/HeaderBar';
 	import nav from '@/components/layout/Nav';
+	import {getProductBuy} from '@/services/supplyAndBuy';
 	export default {
 		validate({ params }) {
 			return !isNaN(+params.id);
 		},
+		head: {
+			title: '求购详情'
+		},
+		async asyncData({ params }) {
+			try {
+				let { data } = await getProductBuy(params.id);
+				return { buyData: data };
+			} catch(e) {
+				console.log(e);
+			}
+		},
 		data() {
 			return {
-				bianhao: ''
+				buyData: ''
 			};
 		},
 		components: {

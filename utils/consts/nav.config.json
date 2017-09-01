@@ -3,11 +3,11 @@
   "name": "首页",
   "iN8nName": "Home"
 }, {
-  "path": "/home/suppiesInfo",
+  "path": "/supplyAndBuy",
   "name": "供求信息",
   "iN8nName": "Demand"
 }, {
-  "path": "/home/productGallery",
+  "path": "/flower",
   "name": "花型展厅",
   "iN8nName": "Pattern"
 }, {
@@ -15,7 +15,7 @@
   "name": "3D试衣",
   "iN8nName": "Model"
 }, {
-  "path": "/home/processDesign",
+  "path": "/processDesign",
   "name": "工艺设计",
   "iN8nName": "Design"
 }]

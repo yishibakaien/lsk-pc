@@ -8,16 +8,16 @@
 					<el-breadcrumb separator=">">
 						<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
 						<el-breadcrumb-item :to="{ path: '/supplyAndBuy', query: {type: 'supply'} }">供应列表</el-breadcrumb-item>
-						<el-breadcrumb-item>供应详情-{{bianhao || '求购单ID'}}</el-breadcrumb-item>
+						<el-breadcrumb-item>供应详情{{'--' + supplyData.data.id}}</el-breadcrumb-item>
 					</el-breadcrumb>
 				</div>
 			</div>
 			<div class="supplyDetail__content clearfix">
 				<div class="fl supplyDetail__content--left">
-					<supply-detail-content></supply-detail-content>
+					<supply-detail-content :obj="supplyData.data"></supply-detail-content>
 				</div>
 				<div class="fr">
-					<supply-detail-business></supply-detail-business>
+					<supply-detail-business :obj="supplyData.data"></supply-detail-business>
 				</div>
 			</div>
 		</div>
@@ -29,13 +29,25 @@
 	import supplyDetailBusiness from '@/components/page/supplyDetail/supplyDetailBusiness';
 	import HeaderBar from '@/components/layout/HeaderBar';
 	import nav from '@/components/layout/Nav';
+	import { getCompanySupply } from '@/services/supplyAndBuy';
 	export default {
 		validate({ params }) {
 			return !isNaN(+params.id);
 		},
+		head: {
+			title: '供应详情'
+		},
+		async asyncData({ params }) {
+			try {
+				let { data } = await getCompanySupply(params.id);
+				return { supplyData: data };
+			} catch(e) {
+				console.log(e);
+			}
+		},
 		data() {
 			return {
-				bianhao: ''
+				supplyData: ''
 			};
 		},
 		components: {
@@ -53,7 +65,7 @@
 		@e title {
 			height: 40px;
 			background: $color-grey-2;
-			@m breadcrumb{
+			@m breadcrumb {
 				padding-top: 12px;
 				margin: 0 auto;
 				width: 1190px;

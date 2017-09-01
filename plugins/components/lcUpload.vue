@@ -81,14 +81,14 @@ export default {
         }
       };
       // 3.OSS token
-      OSS_Token(this.fileType).then((res) => {
+      OSS_Token({fileType:this.fileType}).then((res) => {
         let data = res.data.data;
         let arr = [];
         this.dir = data.dir;
         this.url = [];
         if (fileLen.length > 0) {
           const client = new OSS.Wrapper({
-            region: _.region,
+            region: this.region,
             secure: true,
             accessKeyId: data.accessKeyId,
             accessKeySecret: data.accessKeySecret,
@@ -99,7 +99,7 @@ export default {
           for (let i = 0; i < fileLen.length; i++) {
             let file = fileLen[i];
             // KEY
-            let storeAs = this.dir + 'web-' + _.uuidMethod().split('-').join('') + '.' + file.name.split('.')[file.name.split('.').length - 1];
+            let storeAs = this.dir + 'web-' + this.uuidMethod().split('-').join('') + '.' + file.name.split('.')[file.name.split('.').length - 1];
             arr.push(new Promise((resolve, reject) => {
               //1 上传图片=>oss
               client.multipartUpload(storeAs, file, {}).then((results) => {

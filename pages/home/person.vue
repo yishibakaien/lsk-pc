@@ -4,11 +4,7 @@
       <div class="person__menu">
         <div class="person__avatar">
           <div class="person__avatar--inner">
-<<<<<<< HEAD
-            <lc-image width="120" :error="require('@/static/img/default/touxiang.jpg')" class="person__avatar--img"></lc-image>
-=======
             <lc-image width="100" class="person__avatar--img" :src="userInfo.userHeadIcon"></lc-image>
->>>>>>> bfba8fd22f1372b8b55c85cd53ed5fb697522d2d
             <i class="el-icon-picture person__avatar--photo"></i>
           </div>
           <p>用户账号</p>

@@ -3,28 +3,38 @@
 		<div class="detailBox clearfix">
 			<div class="detailBox__l fl">
 				<div class="bigImg">
-					<img src="~static/img/default/morenhuaxing.png" />
+					<img :src="productPic?productPic:obj.defaultPicUrl" />
 				</div>
-				<div class="imgGroup">
-					<img v-for="item in 5" src="~static/img/default/maoyishang.png" :key="item" />
+				<div class="imgGroup" :class="{'pad': imgData.length <= 5}">
+					<span class="prev" @click="colorCardPrev"><i class="iconfont icon-Prev"></i></span>
+					<span class="next" @click="colorCardNext"><i class="iconfont icon-right"></i></span>
+					<img v-for="(item, index) in imgDatas" :src="item.picUrl" :key="index" @click="handlePic(item.picUrl)" />
 				</div>
 				<div class="collection">
-					<span><i class="iconfont el-icon-star-on"></i>收藏花型</span>
+					<span :class="{'isFavorite': isFavorite === 0}" @click="handleFavorite"><i class="iconfont icon-shoucang1"></i>收藏花型</span>
 				</div>
 			</div>
 			<div class="detailBox__r fl">
-				<h3>花型编号+成分</h3>
+				<h3>{{obj.id}}+{{obj.ingredient}}</h3>
 				<div class="detailBrder"></div>
 				<div class="detailInfo">
-					<p class="price"><span class="title">价格：</span><span class="priceNum"><b>¥</b>75.00</span><em>/码</em></p>
-					<p><span class="title">地址：</span>广东省广州市</p>
-					<p><span class="title">花型：</span>面料</p>
-					<p><span class="title">货型：</span>胚布</p>
-					<p><span class="title">库存：</span>需要开机</p>
+					<p class="price">
+						<span class="title">价格：</span>
+						<span v-if="obj.price">
+							<span class="priceNum"><b>¥</b>{{obj.price}}</span>
+						<em>/{{obj.priceUnit | filterDict(dicTree.PRODUCT_UNIT)}}</em>
+						</span>
+						<span class="priceNum" v-else>面议</span>
+					</p>
+					<p><span class="title">地址：</span><span>{{areaData}}</span></p>
+					<p><span class="title">类型：</span>{{obj.category | filterDict(dicTree.PRODUCT_TYPE)}}</p>
+					<p><span class="title">货型：</span>{{obj.productShape | filterDict(dicTree.PRODUCT_SHAPE)}}</p>
+					<p v-if="obj.isStock"><span class="title">库存：</span>{{obj.isStock | filterDict(filterData.isStock)}}</p>
+					<p v-else><span class="title">库存：</span>请联系商家</p>
 					<div class="detailBrder"></div>
 					<p class="colorCard">
 						<span class="title">色卡：</span>
-						<img v-for="item in 9" src="~static/img/default/changjia.png" />
+						<img v-for="(item, index) in colorCardData" :src="item.picUrl" @click="handlePic(item.picUrl)" />
 					</p>
 					<p>
 						<span class="title fl">类型：</span>
@@ -40,7 +50,7 @@
 					<p style="margin-top: 15px;">
 						<span class="title fl">数量：</span>
 						<div class="fl">
-							<el-input-number size="small" v-model="num6" :min="0" :max="200"></el-input-number>
+							<el-input-number size="small" v-model="num6" :min="0" :max="20000"></el-input-number>
 						</div>
 						<div class="clearfix"></div>
 					</p>
@@ -56,16 +66,113 @@
 </template>
 
 <script>
+	// 测试数据
+	//	let data = [{picUrl: 'http://image.tswq.wang/product/web-37c1fd4fab0d4aacbaef2b6e2b2e8a70.jpg'},
+	//	{picUrl: 'http://image.tswq.wang/product/web-7ba1636b685a4ee3a687d5a61db45bd0.jpg'},
+	//	{picUrl: 'http://image.tswq.wang/product/web-37c1fd4fab0d4aacbaef2b6e2b2e8a70.jpg'},
+	//	{picUrl: 'http://image.tswq.wang/product/web-7ba1636b685a4ee3a687d5a61db45bd0.jpg'},
+	//	{picUrl: 'http://image.tswq.wang/product/web-37c1fd4fab0d4aacbaef2b6e2b2e8a70.jpg'},
+	//	{picUrl: 'http://image.tswq.wang/product/web-7ba1636b685a4ee3a687d5a61db45bd0.jpg'},
+	//	{picUrl: 'http://image.tswq.wang/product/web-37c1fd4fab0d4aacbaef2b6e2b2e8a70.jpg'}]
+	import { mapGetters } from 'vuex';
+	import { getColorCards } from '@/services/flower';
+	import { favoriteBus, byCode } from '@/services/util';
 	export default {
 		data() {
 			return {
+				imgData: [],
+				imgDatas: [],
+				start: 0,
+				end: 5,
+				filterData: {
+					isStock: [{ dicValue: 0, name: '需要开机' }, { dicValue: 1, name: '有库存' }]
+				},
+				colorCardData: {},
+				isFavorite: false,
+				productPic: '',
+				paramsFavorite: {
+					businessId: this.obj.id,
+					businessType: 1
+				},
+				areaData: '未填写',
 				radio3: '1',
 				num6: '1'
 			};
 		},
+		computed: {
+			...mapGetters({
+				dicTree: 'dict/dicTree'
+			})
+		},
+		props: {
+			obj: {
+				type: Object
+			},
+			city: ''
+		},
+		async created() {
+			this.isFavorite = this.obj.isFavorite;
+			try {
+				let { data } = await getColorCards({ productId: this.obj.id });
+				this.colorCardData = data.data;
+				// 色卡预览元imgGroup
+				this.imgData = Object.assign([], this.colorCardData);
+				if(this.imgData.length > 5) {
+					this.imgDatas = this.imgData.slice(0, 5);
+				} else {
+					this.imgDatas = Object.assign({}, this.imgData);
+				}
+			} catch(e) {
+				console.log('error', e);
+			}
+			// 获取全部省市信息
+			if(this.city) {
+				try {
+					let { data } = await byCode({ areaCode: this.city });
+					console.log(data);
+					this.areaData = data.data.parentName + ' ' + data.data.areaName;
+				} catch(e) {
+					console.log('error', e);
+				}
+			}
+		},
 		methods: {
 			handleOrderType() {
 				console.log(this.radio3)
+			},
+			// 收藏/取消收藏花型
+			async handleFavorite() {
+				try {
+					let { data } = await favoriteBus(this.paramsFavorite);
+					console.log(data);
+					if(data.code === 0) {
+						this.isFavorite = this.isFavorite === 1 ? 0 : 1;
+					}
+				} catch(e) {
+					console.log('error', e);
+				}
+			},
+			// 色卡预览
+			handlePic(src) {
+				this.productPic = src;
+			},
+			// 上一张色卡
+			colorCardPrev() {
+				if(this.start === 0) {
+					return;
+				}
+				this.start--;
+				this.end--;
+				this.imgDatas = this.imgData.slice(this.start, this.end);
+			},
+			// 下一张色卡
+			colorCardNext() {
+				if(this.end === this.imgData.length) {
+					return;
+				}
+				this.start++;
+				this.end++;
+				this.imgDatas = this.imgData.slice(this.start, this.end);
 			}
 		}
 	};
@@ -76,8 +183,8 @@
 		margin-top: 30px;
 		@utils-clearfix;
 	}
-	
 	/* radio-style */
+	
 	.orderType {
 		font-size: 18px;
 		border-radius: 0;
@@ -89,7 +196,7 @@
 			line-height: 33px;
 			border-radius: 0;
 			border: 1px solid $color-grey-5;
-			transition: background-color,border,color .3s cubic-bezier(.645,.045,.355,1);
+			transition: background-color, border, color .3s cubic-bezier(.645, .045, .355, 1);
 		}
 		.el-radio-button__orig-radio:checked+.el-radio-button__inner {
 			color: $color-primary;
@@ -100,6 +207,7 @@
 		}
 	}
 	/* btn */
+	
 	.btnGroup {
 		margin-top: 55px;
 		.el-button {
@@ -114,6 +222,12 @@
 		}
 		.el-button--primary {
 			color: #fff;
+		}
+	}
+	
+	.isFavorite {
+		i {
+			color: #666 !important;
 		}
 	}
 </style>
