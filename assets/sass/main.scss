@@ -205,9 +205,10 @@ em {
                     vertical-align: top;
                 }
                 img {
-                    padding-right: 5px;
+                    margin-right: 5px;
                     width: 60px;
                     height: 60px;
+                    border: 1px solid transparent;
                     cursor: pointer;
                     &:nth-of-type(9n) {
                         padding: 0;

@@ -11,3 +11,7 @@ export const getConsigneeList = param => axios.get(`/consignee/listConsignee`, {
 export const getConsignee = () => axios.get(`/consignee/getConsignee/${id}`, {params: param})
 // 设置默认
 export const setConsigneeDefault = id => axios.get(`/consignee/setDefault/${id}`)
+// 加入购物车
+export const addShoppingCart = param => axios.post(`/shoppingCart/addShoppingCart`, param)
+// 采购登记
+export const askPurchase = param => axios.post(`/enquiry/askPurchase`, param)
