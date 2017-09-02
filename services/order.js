@@ -15,3 +15,5 @@ export const setConsigneeDefault = id => axios.get(`/consignee/setDefault/${id}`
 export const addShoppingCart = param => axios.post(`/shoppingCart/addShoppingCart`, param)
 // 采购登记
 export const askPurchase = param => axios.post(`/enquiry/askPurchase`, param)
+// 购物车列表
+export const listShoppingCart = param => axios.post(` /shoppingCart/listShoppingCart`, param)

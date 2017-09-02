@@ -6,15 +6,15 @@
 			<div class="shoppingCart__content">
 				<div class="shoppingCart__content--title">
 					<el-tabs v-model="activeName">
-						<el-tab-pane :label="'大货花型' + `${num}`" name="cargo"></el-tab-pane>
-						<el-tab-pane :label="'剪版花型' + `${num}`" name="cutVersion"></el-tab-pane>
-						<el-tab-pane :label="'剪样花型' + `${num}`" name="cutting"></el-tab-pane>
+						<el-tab-pane :label="'大货花型' + `${num}`" name="2"></el-tab-pane>
+						<el-tab-pane :label="'剪版花型' + `${num}`" name="3"></el-tab-pane>
+						<el-tab-pane :label="'剪样花型' + `${num}`" name="1"></el-tab-pane>
 					</el-tabs>
 				</div>
 				<div class="shoppingCart__content--main">
-					<cargo v-show="activeName === 'cargo'"></cargo>
-					<cutting v-show="activeName === 'cutting'"></cutting>
-					<cut-version v-show="activeName === 'cutVersion'"></cut-version>
+					<cargo v-show="activeName === '2'"></cargo>
+					<cutting v-show="activeName === '1'"></cutting>
+					<cut-version v-show="activeName === '3'"></cut-version>
 				</div>
 			</div>
 		</div>
@@ -27,11 +27,17 @@
 	import cargo from '@/components/page/shoppingCart/cargo';
 	import cutting from '@/components/page/shoppingCart/cutting';
 	import cutVersion from '@/components/page/shoppingCart/cutVersion';
+	import {listShoppingCart} from '@/services/order';
 	export default {
 		data() {
 			return {
 				num: 2,
-				activeName: 'cargo'
+				activeName: '1',
+				paramList: {
+					buyType: '',
+					pageNo: 1,
+					pageSize: ''
+				}
 			}
 		},
 		components: {
@@ -40,6 +46,13 @@
 			cargo,
 			cutting,
 			cutVersion
+		},
+		created() {
+			console.log(this.$route.query.type)
+			if (this.$route.query.type) {
+				this.activeName = this.$route.query.type;
+			}
+			
 		}
 	};
 </script>

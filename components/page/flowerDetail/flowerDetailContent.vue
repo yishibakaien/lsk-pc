@@ -41,8 +41,8 @@
 						<div class="fl">
 							<el-radio-group v-model="paramsShopping.buyType">
 								<el-radio-button label="1" class="orderType">剪样</el-radio-button>
-								<el-radio-button label="2" class="orderType">剪版</el-radio-button>
-								<el-radio-button label="3" class="orderType">大货</el-radio-button>
+								<el-radio-button label="3" class="orderType">剪版</el-radio-button>
+								<el-radio-button label="2" class="orderType">大货</el-radio-button>
 							</el-radio-group>
 						</div>
 						<div class="clearfix"></div>
@@ -121,7 +121,7 @@
 				filterData: {
 					isStock: [{ dicValue: 0, name: '需要开机' }, { dicValue: 1, name: '有库存' }]
 				},
-				radioData: [{value: 1, name: '剪样'},{value: 2, name: '剪版'},{value: 3, name: '大货'}],
+				radioData: [{ value: 1, name: '剪样' },{ value: 2  , name: '大货' }, { value: 3, name: '剪版' } ],
 				colorCardData: {},
 				isFavorite: false,
 				productPic: '',
@@ -158,8 +158,9 @@
 						message: '请选择输入采购人姓名或者单位名称',
 						trigger: 'blur'
 					},
-					phone: [{required: true,message: '请填写联系方式'},
-					{pattern: /^1(3|4|5|7|8)[0-9]\d{8}$/,message: '请填写正确的联系方式'}]
+					phone: [{ required: true, message: '请填写联系方式' },
+						{ pattern: /^1(3|4|5|7|8)[0-9]\d{8}$/, message: '请填写正确的联系方式' }
+					]
 				}
 			};
 		},
@@ -176,14 +177,14 @@
 					this.paramsShopping.buyNum = 1;
 				}
 				if(val === '2') {
-					this.inputNumber.min = 1;
-					this.inputNumber.max = 5;
-					this.paramsShopping.buyNum = 1;
-				}
-				if(val === '3') {
 					this.inputNumber.min = 100;
 					this.inputNumber.max = 1000000;
 					this.paramsShopping.buyNum = 100;
+				}
+				if(val === '3') {
+					this.inputNumber.min = 1;
+					this.inputNumber.max = 5;
+					this.paramsShopping.buyNum = 1;
 				}
 			}
 		},
@@ -284,13 +285,23 @@
 				}
 			},
 			// 在线交易
-			handleDeal() {
+			async handleDeal() {
 				// 上架到蕾丝控
 				if(this.obj.isShelve === 1) {
-					this.addShopping()
-					this.$router.push({
-						path: '/shoppingCart'
-					});
+					this.paramsShopping.colorId = this.paramsShopping.colorId ? this.paramsShopping.colorId : this.colorCardData[0].id;
+					try {
+						let { data } = await addShoppingCart(this.paramsShopping);
+						if(data.code === 0) {
+							this.$router.push({
+								path: '/shoppingCart',
+								query: {
+									type: this.paramsShopping.buyType
+								}
+							});
+						}
+					} catch(e) {
+						console.log('error', e);
+					}
 					return;
 				}
 				if(this.obj.isShelve === 0) {
@@ -412,6 +423,7 @@
 		}
 	}
 	/*form*/
+	
 	.important {
 		label {
 			&::before {
