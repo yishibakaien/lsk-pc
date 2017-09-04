@@ -87,8 +87,8 @@ module.exports = {
 		extend(config) {
 			config.module.rules.forEach((rule) => {
 				if(isVueRule(rule)) {
-					rule.query.loaders.sass.push(sassResourcesLoader)
-					rule.query.loaders.scss.push(sassResourcesLoader)
+					rule.options.loaders.sass.push(sassResourcesLoader)
+					rule.options.loaders.scss.push(sassResourcesLoader)
 				}
 				if(isSASSRule(rule)) {
 					rule.use.push(sassResourcesLoader)
