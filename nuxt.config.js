@@ -75,6 +75,7 @@ module.exports = {
 	env: {
 		baseUrl: 'https://api.ts57.cn',
 		imgBaseUrl: 'http://zsbg.oss-cn-shenzhen.aliyuncs.com/',
+		picBaseUrl: 'http://imgdev.tswq.wang/', // 测试图片title
 		proxyUrl: 'http://192.168.8.212:9090'
 	},
 	build: {

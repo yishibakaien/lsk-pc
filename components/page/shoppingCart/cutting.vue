@@ -3,29 +3,29 @@
 		<shop-title></shop-title>
 		<div class="cargo__content">
 			<div class="cargo__content--order">
-				<div class="item" v-for="(item, index) in 3">
+				<div class="item" v-for="(item, index) in listData">
 					<div class="title">
-						<el-checkbox @change="handleCheckAllChange(index)">恒申纺织</el-checkbox>
+						<el-checkbox @change="handleCheckAllChange(index)">{{item.companyName}}</el-checkbox>
 						<span class="fr">运费：到付</span>
 					</div>
 					<div class="content">
-						<div class="tableItem" v-for="(item, index) in 2">
+						<div class="tableItem" v-for="(obj, index) in item.shoppingCarts">
 							<el-row>
 								<el-col :span="1">
 									<el-checkbox @change="handleCheckAllItem(index)"></el-checkbox>
 								</el-col>
 								<el-col :span="7">
 									<div class="imgBox fl">
-										<img src="~static/img/default/maoyishang.png"/>
+										<img :src="obj.picUrl" />
 									</div>
 									<div class="info fl">
-										<span>#2006</span>
-										<p>规格+成份</p>
+										<span>{{obj.productId}}</span>
+										<p>{{obj.ingredient}}</p>
 									</div>
 								</el-col>
 								<el-col :span="3">
 									<div class="column">
-										¥0.00
+										¥{{obj.price}}/{{obj.priceUnit | filterDict(dicTree.PRODUCT_UNIT)}}
 									</div>
 								</el-col>
 								<el-col :span="5">
@@ -34,10 +34,10 @@
 									</div>
 								</el-col>
 								<el-col :span="4">
-									<div class="column">¥0.00</div>
+									<div class="column">¥{{obj.price * 1}}</div>
 								</el-col>
 								<el-col :span="4">
-									<div class="column dele">删除</div>
+									<div class="column dele" @click="handleDele(obj.id)">删除</div>
 								</el-col>
 							</el-row>
 						</div>
@@ -50,17 +50,44 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	import title from './components/title';
 	import bottom from './components/bottom';
+	import { listShoppingCart } from '@/services/order';
 	export default {
 		data() {
 			return {
-				num: 1
+				num: 1,
+				listData: []
 			};
 		},
 		components: {
 			'shopTitle': title,
 			'shopBottom': bottom
+		},
+		computed: {
+			...mapGetters({
+				dicTree: 'dict/dicTree'
+			})
+		},
+		async created() {
+//			console.log(process.env.imgBaseUrl);
+			try {
+				let {data} = await listShoppingCart({buyType: 1});
+				this.listData = data.data;
+				// 数据处理
+				this.listData.forEach((item) => {
+					item.shoppingCarts.forEach((e) => {
+						if (e.picUrl.indexOf('oss-cn-shenzhen') < 0) {
+							e.picUrl = process.env.imgBaseUrl + e.picUrl;
+							console.log(e.picUrl)
+						}
+					})
+				})
+				console.log(this.listData);
+			}catch(e) {
+				console.log('error', e);
+			}
 		},
 		methods: {
 			handleCheckAllChange(index) {
@@ -68,6 +95,9 @@
 			},
 			handleCheckAllItem(index) {
 				console.log(index);
+			},
+			handleDele(id) {
+				console.log(id);
 			}
 		}
 	};

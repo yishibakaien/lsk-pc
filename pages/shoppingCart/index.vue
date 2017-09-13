@@ -12,9 +12,7 @@
 					</el-tabs>
 				</div>
 				<div class="shoppingCart__content--main">
-					<cargo v-show="activeName === '2'"></cargo>
-					<cutting v-show="activeName === '1'"></cutting>
-					<cut-version v-show="activeName === '3'"></cut-version>
+					<lc-order :type="activeName"></lc-order>
 				</div>
 			</div>
 		</div>
@@ -24,9 +22,7 @@
 <script>
 	import HeaderBar from '@/components/layout/HeaderBar';
 	import nav from '@/components/layout/Nav';
-	import cargo from '@/components/page/shoppingCart/cargo';
-	import cutting from '@/components/page/shoppingCart/cutting';
-	import cutVersion from '@/components/page/shoppingCart/cutVersion';
+	import lcOrder from '@/components/page/shoppingCart/lcOrder';
 	import {listShoppingCart} from '@/services/order';
 	export default {
 		data() {
@@ -43,23 +39,20 @@
 		components: {
 			HeaderBar,
 			'lcNav': nav,
-			cargo,
-			cutting,
-			cutVersion
+			lcOrder
 		},
 		created() {
 			console.log(this.$route.query.type)
 			if (this.$route.query.type) {
 				this.activeName = this.$route.query.type;
 			}
-			
 		}
 	};
 </script>
 
 <style lang="scss" scoped>
 	@b shoppingCart {
-		min-height: 800px;
+		min-height: 1100px;
 		@e content {
 			@m title {}
 		}

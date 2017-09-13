@@ -12,8 +12,8 @@
 		</div>
 		<div class="flowerCard__info">
 			<div class="flowerCard__info--cardInfo">
-				<p class="price"><em>¥</em>&nbsp;<span>{{obj.price}}</span>/{{obj.priceUnit | filterDict(dicTree.PRODUCT_UNIT)}}</p>
-				<p class="code">#{{obj.id}}</p>
+				<p class="price"><em>¥</em>&nbsp;<span>{{obj.price/100}}</span>/{{obj.priceUnit | filterDict(dicTree.PRODUCT_UNIT)}}</p>
+				<p class="code" :title="obj.productNo">{{obj.productNo}}</p>
 				<img class="logo" src="~static/image/logo/lace1.png" />
 			</div>
 			<slot></slot>
@@ -41,6 +41,16 @@
 			...mapGetters({
 				dicTree: 'dict/dicTree'
 			})
+		},
+		watch: {
+			obj(val) {
+				this.imgMainSrc = this.obj.colors[0].picUrl;
+				if(this.obj.colors.length > 4) {
+					this.imgsData = this.obj.colors.slice(0, 4);
+				} else {
+					this.imgsData = this.obj.colors;
+				}
+			}
 		},
 		created() {
 			if(this.obj.colors.length > 4) {
@@ -148,8 +158,11 @@
 					}
 				}
 				.code {
+					display: inline-block;
+					width: 100px;
 					font-size: 14px;
 					color: $color-black;
+					@utils-ellipsis;
 				}
 				.logo {
 					width: 85px;

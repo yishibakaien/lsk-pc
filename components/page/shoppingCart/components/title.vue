@@ -17,13 +17,12 @@
 	export default {
 		data() {
 			return {
-				checkAll: true,
-				isIndeterminate: true
+				checkAll: false
 			};
 		},
 		methods: {
 			handleCheckAllChange(event) {
-				console.log(event.target.checked);
+				this.$emit('title-checked', event.target.checked);
 			}
 		}
 	};

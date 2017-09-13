@@ -117,7 +117,6 @@
 				try {
 					let { data } = await listProducts(this.params);
 					this.listData = data.data;
-					console.log(this.listData);
 				} catch(e) {
 					console.log('error', e);
 				}

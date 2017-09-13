@@ -6,7 +6,7 @@
 				<div class="item" v-for="(item, index) in 3">
 					<div class="title">
 						<el-checkbox @change="handleCheckAllChange(index)">恒申纺织</el-checkbox>
-						<span class="fr">运费：到付</span>
+						<!--<span class="fr">运费：到付</span>-->
 					</div>
 					<div class="content">
 						<div class="tableItem" v-for="(item, index) in 2">

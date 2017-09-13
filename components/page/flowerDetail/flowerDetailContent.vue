@@ -21,7 +21,7 @@
 					<p class="price">
 						<span class="title">价格：</span>
 						<span v-if="obj.price">
-							<span class="priceNum"><b>¥</b>{{obj.price}}</span>
+							<span class="priceNum"><b>¥</b>{{obj.price/100}}</span>
 						<em>/{{obj.priceUnit | filterDict(dicTree.PRODUCT_UNIT)}}</em>
 						</span>
 						<span class="priceNum" v-else>面议</span>
@@ -291,7 +291,7 @@
 					this.paramsShopping.colorId = this.paramsShopping.colorId ? this.paramsShopping.colorId : this.colorCardData[0].id;
 					try {
 						let { data } = await addShoppingCart(this.paramsShopping);
-						if(data.code === 0) {
+						if(data.code === 0 || data.code === 1001001) {
 							this.$router.push({
 								path: '/shoppingCart',
 								query: {
@@ -317,8 +317,10 @@
 				this.$refs[formName].validate(async(valid) => {
 					if(valid) {
 						try {
-							await askPurchase(this.dealForm);
-							this.dialogVisible = true;
+							let {data} = await askPurchase(this.dealForm);
+							if (data.code===0) {
+								this.dialogVisible = false;
+							}
 						} catch(e) {
 							console.log('error', e);
 						}
