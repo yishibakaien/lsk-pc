@@ -20,7 +20,7 @@
 						<span class="fr" v-if="type!=='2'">运费：到付</span>
 					</div>
 					<div class="content">
-						<div class="tableItem" v-for="obj in item.shoppingCarts">
+						<div class="tableItem" v-for="(obj,e) in item.shoppingCarts">
 							<el-row>
 								<el-col :span="1">
 									<el-checkbox v-model="checkout[index]" :label="obj.id" @change="handleCheckAllItem(obj.id)">{{ '' }}</el-checkbox>
@@ -43,15 +43,18 @@
 									<div class="column" v-if="type==='1'">
 										1
 									</div>
-									<div class="column2" v-else>
-										<el-input-number size="small" v-model="obj.buyNum" :min="0" :max="200"></el-input-number>
+									<div class="column2" v-else-if="type==='2'">
+										<el-input-number size="small" v-model="obj.buyNum" :min="100" :max="1000000" @change="handleChange(obj)"></el-input-number>
+									</div>
+									<div class="column2" v-else-if="type==='3'">
+										<el-input-number size="small" v-model="obj.buyNum" :min="1" :max="5" @change="handleChange(obj)"></el-input-number>
 									</div>
 								</el-col>
 								<el-col :span="4">
-									<div class="column">¥{{obj.price/100 * 1}}</div>
+									<div class="column">¥{{obj.price/100 * obj.buyNum}}</div>
 								</el-col>
 								<el-col :span="4">
-									<div class="column dele" @click="handleDele(obj.id)">删除</div>
+									<div class="column dele" @click="handleDele(1,obj.id)">删除</div>
 								</el-col>
 							</el-row>
 						</div>
@@ -64,7 +67,7 @@
 				<el-col :span="2">
 					<el-checkbox v-model="checkAll" @change="handleAll">全选</el-checkbox>
 				</el-col>
-				<el-col :span="3"><span class="dele">删除选中的花型</span></el-col>
+				<el-col :span="3"><span class="dele" @click="handleDele(2)">删除选中的花型</span></el-col>
 				<el-col :span="3" :offset="3"><span>已选中 <em>{{totalNum}}</em> 款花型</span></el-col>
 				<el-col :span="4"><span>商品总价：<em>¥{{totalPrice}}</em> </span></el-col>
 				<el-col :span="5"><span>应付金额：<em>¥{{totalPrice}}</em> (不含运费)</span></el-col>
@@ -78,7 +81,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import { listShoppingCart } from '@/services/order';
+	import { listShoppingCart, deleteShoppingCart, setBuyNum } from '@/services/order';
 	export default {
 		data() {
 			return {
@@ -114,15 +117,15 @@
 					arr = arr.concat(item);
 				})
 				arr.forEach(item => {
-					for(let i=0;i<this.listData.length;i++) {
-						for(let j=0;j<this.listData[i].shoppingCarts.length;j++) {
+					for(let i = 0; i < this.listData.length; i++) {
+						for(let j = 0; j < this.listData[i].shoppingCarts.length; j++) {
 							if(this.listData[i].shoppingCarts[j].id === item) {
-								num+=this.listData[i].shoppingCarts[j].buyNum*this.listData[i].shoppingCarts[j].price;
+								num += this.listData[i].shoppingCarts[j].buyNum * this.listData[i].shoppingCarts[j].price;
 							}
 						}
 					}
 				})
-				return num/100;
+				return num / 100;
 			}
 		},
 		props: {
@@ -131,36 +134,7 @@
 		watch: {
 			type(val) {
 				this.paramsList.buyType = val;
-				this.checkout = [];
-				this.checkoutAll = [];
-				this.checkAll = false;
 				this.getShoppingList();
-			},
-			checkoutAll(val, oldVal) {
-				// 定位变化的值
-				//				let set1 = new Set(val);
-				//				let set2 = new Set(oldVal);
-				//				oldVal.forEach(x => set1.add(x));
-				//				let arr = Array.from(set1);
-				//				let result = [];
-				//				console.log('arr', arr)
-				//				console.log('val', val)
-				//				console.log('oldVal', oldVal)
-				//				for(let i = 0; i < arr.length; i++) {
-				//					if(!(set1.has(arr[i])) || !(set2.has(arr[i]))) {
-				//						console.log('jinlaile')
-				//						result.push(arr[i]);
-				//					}
-				//				}
-				//				console.log('result', result)
-				//				for(let i = 0; i < val.length; i++) {
-				//					let index = val[i];
-				//					let arr = [];
-				//					this.listData[index].shoppingCarts.forEach((item) => {
-				//						arr.push(item.id);
-				//					})
-				//					this.checkout.splice(index, 1, arr);
-				//				}
 			},
 			checkout(val) {
 				let data = [];
@@ -175,7 +149,7 @@
 					})
 					data.splice(index, 1, arr);
 				}
-				if (!val.length) {
+				if(!val.length) {
 					return;
 				}
 				let set = new Set(this.checkoutAll);
@@ -188,12 +162,18 @@
 			}
 		},
 		async created() {
-			console.log(this.paramsList)
 			this.getShoppingList();
 		},
 		methods: {
+			// 重置
+			reset() {
+				this.checkout = [];
+				this.checkoutAll = [];
+				this.checkAll = false;
+			},
 			// 获取我的求购列表
 			async getShoppingList() {
+				this.reset();
 				try {
 					let { data } = await listShoppingCart(this.paramsList);
 					this.listData = data.data;
@@ -235,8 +215,23 @@
 				//				}
 			},
 			// 删除选中购物车
-			handleDele(id) {
-				//				console.log(id);
+			async handleDele(type, id) {
+				let params = {};
+				let arr = [];
+				if(type === 1) {
+					params.ids = [id];
+				} else {
+					this.checkout.forEach(item => {
+						arr = arr.concat(item);
+					})
+					params.ids = arr;
+				}
+				try {
+					await deleteShoppingCart(params);
+					this.getShoppingList()
+				} catch(e) {
+					console.log('error', e)
+				}
 			},
 			// 全选
 			handleAll() {
@@ -259,6 +254,19 @@
 					})
 					this.checkout.splice(index, 1, arr);
 				}
+			},
+			// 设置购物车数量
+			handleChange(obj) {
+				setTimeout(async () => {
+					let params = {};
+					params.buyNum = obj.buyNum;
+					params.id = obj.id;
+					try{
+						await setBuyNum(params);
+					}catch(e) {
+						console.log('error',e)
+					}
+				}, 0);
 			}
 		}
 	};

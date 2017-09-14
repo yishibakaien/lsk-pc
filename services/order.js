@@ -17,3 +17,9 @@ export const addShoppingCart = param => axios.post(`/shoppingCart/addShoppingCar
 export const askPurchase = param => axios.post(`/enquiry/askPurchase`, param)
 // 购物车列表
 export const listShoppingCart = param => axios.post(`/shoppingCart/listShoppingCart`, param)
+// 删除购物车
+export const deleteShoppingCart = param => axios.post(`/shoppingCart/deleteShoppingCart`, param)
+// 设置购买数量 
+export const setBuyNum = param => axios.post(`/shoppingCart/setBuyNum`, param)
+// 购物车中商品数量
+export const countShoppingCart = param => axios.get(`/shoppingCart/countShoppingCart`, {params: param})
