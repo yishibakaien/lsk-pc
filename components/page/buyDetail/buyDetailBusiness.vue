@@ -1,3 +1,4 @@
+<!--author: liuyifei-->
 <template>
 	<div class="buyDetailBusiness">
 		<div class="buyDetailBusiness__title clearfix" v-if="isMain">

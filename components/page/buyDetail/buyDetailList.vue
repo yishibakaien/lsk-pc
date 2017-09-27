@@ -1,3 +1,4 @@
+<!--author: liuyifei-->
 <template>
 	<div>
 		<div class="buyDetailList">

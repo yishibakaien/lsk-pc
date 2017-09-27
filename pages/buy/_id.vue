@@ -1,3 +1,4 @@
+<!--author: liuyifei-->
 <template>
 	<section>
 		<header-bar></header-bar>
@@ -35,10 +36,10 @@
 	export default {
 		validate({ params }) {
 			return !isNaN(+params.id);
-		},
+		}, // 验证ID有效性
 		head: {
 			title: '求购详情'
-		},
+		}, // 可设置页面title
 		async asyncData({ params }) {
 			try {
 				let { data } = await getProductBuy(params.id);

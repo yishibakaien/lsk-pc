@@ -1,3 +1,4 @@
+<!--author: liuyifei-->
 <template>
 	<div class="page-bar">
 		<a @click="selectFirstPage">首页</a>

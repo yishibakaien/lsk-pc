@@ -1,3 +1,4 @@
+<!--author: liuyifei-->
 <template>
 	<div class="buyRelease">
 		<header-bar></header-bar>

@@ -1,3 +1,4 @@
+<!--author: liuyifei-->
 <template>
 	<div class="buyRelease">
 		<header-bar></header-bar>
@@ -83,7 +84,7 @@
 					supplyNum: '',
 					supplyDesc: '',
 					supplyUnit: ''
-				},
+				}, // 表单数据
 				imgBase64: '',
 				unitTxt: '公斤',
 				rules: {
@@ -113,7 +114,7 @@
 						pattern: /^[0-9]*$/,
 						message: '请输入正确的供应数量'
 					}
-				},
+				}, // 验证规则
 				dialogVisible: false,
 				screenData: data,
 				unitOptions: data.unit //单位

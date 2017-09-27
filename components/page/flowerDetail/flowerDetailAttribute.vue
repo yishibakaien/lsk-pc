@@ -1,3 +1,4 @@
+<!--author: liuyifei-->
 <template>
 	<div class="flowerDetailAttribute">
 		<lc-title title="花型属性">

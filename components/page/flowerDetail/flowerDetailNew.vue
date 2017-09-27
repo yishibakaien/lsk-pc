@@ -1,3 +1,4 @@
+<!--author: liuyifei-->
 <template>
 	<div class="flowerDetailNew">
 		<lc-title title="最新上架" :path="path">

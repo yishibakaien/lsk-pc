@@ -1,3 +1,4 @@
+<!--author: liuyifei-->
 <template>
 	<div class="supplyDetailContent">
 		<div class="detailBox clearfix">

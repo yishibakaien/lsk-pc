@@ -1,3 +1,4 @@
+<!--author: liuyifei-->
 <template>
 <div class="oss-file">
   <input type="file" :id="id" accept="image/png,image/jpeg,image/bmp,image/jpg" :multiple="multiple" @change="doUpload" />

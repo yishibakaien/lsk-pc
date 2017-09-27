@@ -1,3 +1,4 @@
+<!--author: liuyifei-->
 <template>
 	<div class="flowerDetailContent">
 		<div class="detailBox clearfix">

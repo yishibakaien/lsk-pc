@@ -13,6 +13,7 @@ import {
   OSS_Token
 } from '@/services/util';
 export default {
+	/*author: liuyifei*/
   /**
    * multiple 是否多选
    * id ID
